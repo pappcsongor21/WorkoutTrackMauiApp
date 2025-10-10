@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Feleves_feladat"
+             x:Class="Feleves_feladat.MainPage">
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel/>
+    </ContentPage.BindingContext>
+    
+    <Grid RowDefinitions="Auto, *, Auto">
+        <Grid 
+            ColumnDefinitions="Auto, *, Auto"
+            BackgroundColor="{StaticResource ThirdColor}">
+            <Button Text="*"
+                    FontSize="40"
+                    BackgroundColor="{StaticResource ThirdColor}"
+                    />
+            <Label 
+                Grid.Column="1" 
+                Text="Day x of this cycle" 
+                FontSize="24"
+                TextColor="White"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                />
+            <Button BackgroundColor="{StaticResource ThirdColor}" Grid.Column="2" Text="O" FontSize="40"/>
+        </Grid>
+        
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout
+        Padding="20"
+        Background="{StaticResource PrimaryColor}">
+
+                <Border  Margin="0,20,0,0" Stroke="Black" StrokeThickness="5">
+                    <Image Source="progress_diagram.png"/>
+                </Border>
+                <Label Text="Progress chart"/>
+
+                <Label Text="Goals for this cycle" FontSize="24" FontAttributes="Bold"/>
+
+                <CollectionView ItemsSource="{Binding Goals}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Name}"/>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Button
+            Command="{Binding NavigateToChooseWorkoutPageCommand}"
+            Text="Train"
+            FontAttributes="Bold"
+            WidthRequest="80"
+            HeightRequest="40"
+            CornerRadius="5"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            Grid.Row="1"
+            Margin="20"
+            BackgroundColor="{StaticResource ThirdColor}"
+            />
+    </Grid>
+    
+</ContentPage>
