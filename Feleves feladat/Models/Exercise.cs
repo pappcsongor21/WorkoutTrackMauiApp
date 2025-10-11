@@ -11,5 +11,14 @@ namespace Feleves_feladat.Models
     {
         [ObservableProperty]
         private string name;
+
+        [ObservableProperty]
+        private string intensity;
+
+        [ObservableProperty]
+        private string targetReps;
+
+        [ObservableProperty]
+        private int targetSets;
     }
 }

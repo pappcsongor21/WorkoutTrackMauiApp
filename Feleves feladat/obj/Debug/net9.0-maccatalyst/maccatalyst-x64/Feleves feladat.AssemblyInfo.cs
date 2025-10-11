@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Feleves feladat")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+dbaf7dafdc7762cfaf39f64a85393f260aced271")]
 [assembly: System.Reflection.AssemblyProductAttribute("Feleves feladat")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Feleves feladat")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

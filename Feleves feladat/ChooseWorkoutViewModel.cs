@@ -16,7 +16,16 @@ namespace Feleves_feladat
         public ChooseWorkoutViewModel()
         {
             Workouts = new ObservableCollection<Workout>();
-            Workouts.Add(new Workout() { Name = "Upper body cali", Color = "Purple" });
+
+            Workouts.Add(new Workout() { Name = "Upper body cali", Color = "Purple",
+            Exercises =
+                [
+                    new Exercise(){Name = "banded pullup", Intensity = "35kg band", TargetReps = "5-8", TargetSets = 3},
+                    new Exercise(){Name = "ring dip hold", Intensity = "slightly assisted", TargetReps = "15s", TargetSets = 3}
+                    new Exercise(){Name = "inverted row", Intensity = "-1 step", TargetReps = "8-12", TargetSets = 3},
+                    new Exercise(){Name = "pushup", Intensity = "", TargetReps = "8-12", TargetSets = 3}
+                ]
+            });
             Workouts.Add(new Workout() { Name = "Lower body", Color = "Green" });
             Workouts.Add(new Workout() { Name = "Upper body cali B", Color = "Purple" });
         }
