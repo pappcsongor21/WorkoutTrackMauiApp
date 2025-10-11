@@ -8,5 +8,6 @@
     </ContentPage.BindingContext>-->
     <!--nem jó, mert itt nem lehet paramétert átadni-->
 
+    
     <Label Text="{Binding Name}"/>
 </ContentPage>
