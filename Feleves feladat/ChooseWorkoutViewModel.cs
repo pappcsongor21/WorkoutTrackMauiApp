@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Feleves_feladat.Models;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,12 @@ namespace Feleves_feladat
             Workouts.Add(new Workout() { Name = "Upper body cali B", Color = "Purple" });
         }
 
+        [RelayCommand]
+        public async Task OpenWorkoutAsync(Workout selectedWorkout)
+        {
+            var newPage = new WorkoutPage(selectedWorkout);
 
+            await Application.Current.MainPage.Navigation.PushAsync(newPage);
+        }
     }
 }
