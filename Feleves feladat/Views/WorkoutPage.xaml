@@ -1,8 +1,40 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Feleves_feladat"
              x:Class="Feleves_feladat.WorkoutPage"
              Title="WorkoutPage">
-
-    <Label Text="{Binding Workout.Name}"/>
+    <ContentPage.Resources>
+        <local:ExerciseSetsAndRepsConverter x:Key="SetXRepsConv"/>
+    </ContentPage.Resources>
+    <Grid RowDefinitions="Auto, *">
+        <Label
+            Text="{Binding Workout.Name}"
+            FontSize="24"
+            FontAttributes="Bold"
+            HeightRequest="50"
+            HorizontalOptions="Fill"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center"
+            BackgroundColor="{Binding Workout.Color}"
+            TextColor="White"/>
+        <ScrollView Grid.Row="1" Margin="0, 0, 0, 0" Padding="0">
+            <CollectionView
+                ItemsSource="{Binding Workout.Exercises}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout>
+                            <Label
+                                Text="{Binding Name}"
+                                FontSize="20"
+                                HorizontalOptions="Fill"
+                                HorizontalTextAlignment="Start"/>
+                            <Label Text="{Binding Intensity}"/>
+                            <Label Text="{Binding ., Converter={StaticResource SetXRepsConv}}"/>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </Grid>
 </ContentPage>
