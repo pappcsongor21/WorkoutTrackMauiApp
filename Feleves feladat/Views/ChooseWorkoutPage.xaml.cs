@@ -5,6 +5,6 @@ public partial class ChooseWorkoutPage : ContentPage
 	public ChooseWorkoutPage()
 	{
 		InitializeComponent();
-        NavigationPage.SetHasNavigationBar(this, false);
+        //NavigationPage.SetHasNavigationBar(this, false);
     }
 }

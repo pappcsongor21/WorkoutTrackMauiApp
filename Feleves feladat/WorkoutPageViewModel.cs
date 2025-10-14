@@ -7,14 +7,20 @@ using System.Threading.Tasks;
 
 namespace Feleves_feladat
 {
+    [QueryProperty(nameof(Workout),"workout")]
     public partial class WorkoutPageViewModel : ObservableObject
     {
         [ObservableProperty]
         private Workout workout;
 
-        public WorkoutPageViewModel(Workout workout)
-        {
-            this.workout = workout;
-        }
+        //public void Init(Workout workout)
+        //{
+        //    Workout = workout;
+        //}
+
+        //public WorkoutPageViewModel(Workout workout)
+        //{
+        //    this.workout = workout;
+        //}
     }
 }

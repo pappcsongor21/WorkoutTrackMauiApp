@@ -15,8 +15,17 @@ namespace Feleves_feladat
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddSingleton<MainPageViewModel>();
+            builder.Services.AddTransient<ChooseWorkoutPageViewModel>();
+            builder.Services.AddTransient<WorkoutPageViewModel>();
+
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddTransient<ChooseWorkoutPage>();
+            builder.Services.AddTransient<WorkoutPage>();
+
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

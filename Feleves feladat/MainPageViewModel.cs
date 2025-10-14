@@ -22,9 +22,9 @@ namespace Feleves_feladat
         }
 
         [RelayCommand]
-        public async Task NavigateToChooseWorkoutPageAsync()
+        public async Task ShowWorkoutsAsync()
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new ChooseWorkoutPage());
+            await Shell.Current.GoToAsync("chooseworkout");
         }
     }
 }

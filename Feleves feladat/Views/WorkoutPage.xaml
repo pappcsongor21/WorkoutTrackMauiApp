@@ -3,11 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Feleves_feladat.WorkoutPage"
              Title="WorkoutPage">
-    <!--<ContentPage.BindingContext>
-        <local:WorkoutPageViewModel/>
-    </ContentPage.BindingContext>-->
-    <!--nem jó, mert itt nem lehet paramétert átadni-->
 
-    
-    <Label Text="{Binding Name}"/>
+    <Label Text="{Binding Workout.Name}"/>
 </ContentPage>

@@ -52,7 +52,7 @@
         </ScrollView>
 
         <Button
-            Command="{Binding NavigateToChooseWorkoutPageCommand}"
+            Command="{Binding ShowWorkoutsCommand}"
             Text="Train"
             FontAttributes="Bold"
             WidthRequest="80"

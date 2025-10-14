@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Feleves_feladat
 {
-    public partial class ChooseWorkoutViewModel : ObservableObject
+    public partial class ChooseWorkoutPageViewModel : ObservableObject
     {
         public ObservableCollection<Workout> Workouts { get; set; }
 
-        public ChooseWorkoutViewModel()
+        public ChooseWorkoutPageViewModel()
         {
             Workouts = new ObservableCollection<Workout>();
 
@@ -34,9 +34,12 @@ namespace Feleves_feladat
         [RelayCommand]
         public async Task OpenWorkoutAsync(Workout selectedWorkout)
         {
-            var newPage = new WorkoutPage(selectedWorkout);
+            var workout = new ShellNavigationQueryParameters()
+            {
+                {"workout", selectedWorkout }
+            };
 
-            await Application.Current.MainPage.Navigation.PushAsync(newPage);
+            await Shell.Current.GoToAsync("workout", workout);
         }
     }
 }

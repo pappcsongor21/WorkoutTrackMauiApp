@@ -4,6 +4,15 @@
         <name>Feleves feladat</name>
     </assembly>
     <members>
+        <member name="T:Feleves_feladat.ChooseWorkoutPageViewModel">
+            <inheritdoc/>
+        </member>
+        <member name="F:Feleves_feladat.ChooseWorkoutPageViewModel.openWorkoutCommand">
+            <summary>The backing field for <see cref="P:Feleves_feladat.ChooseWorkoutPageViewModel.OpenWorkoutCommand"/>.</summary>
+        </member>
+        <member name="P:Feleves_feladat.ChooseWorkoutPageViewModel.OpenWorkoutCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:Feleves_feladat.ChooseWorkoutPageViewModel.OpenWorkoutAsync(Feleves_feladat.Workout)"/>.</summary>
+        </member>
         <member name="T:Feleves_feladat.MainPageViewModel">
             <inheritdoc/>
         </member>
@@ -18,6 +27,15 @@
         </member>
         <member name="P:Feleves_feladat.Models.Exercise.Name">
             <inheritdoc cref="F:Feleves_feladat.Models.Exercise.name"/>
+        </member>
+        <member name="P:Feleves_feladat.Models.Exercise.Intensity">
+            <inheritdoc cref="F:Feleves_feladat.Models.Exercise.intensity"/>
+        </member>
+        <member name="P:Feleves_feladat.Models.Exercise.TargetReps">
+            <inheritdoc cref="F:Feleves_feladat.Models.Exercise.targetReps"/>
+        </member>
+        <member name="P:Feleves_feladat.Models.Exercise.TargetSets">
+            <inheritdoc cref="F:Feleves_feladat.Models.Exercise.targetSets"/>
         </member>
         <member name="T:Feleves_feladat.Goal">
             <inheritdoc/>
@@ -40,6 +58,12 @@
         <member name="P:Feleves_feladat.Workout.Color">
             <inheritdoc cref="F:Feleves_feladat.Workout.color"/>
         </member>
+        <member name="T:Feleves_feladat.WorkoutPageViewModel">
+            <inheritdoc/>
+        </member>
+        <member name="P:Feleves_feladat.WorkoutPageViewModel.Workout">
+            <inheritdoc cref="F:Feleves_feladat.WorkoutPageViewModel.workout"/>
+        </member>
         <member name="T:Feleves_feladat.Resource">
             <summary>
             Android Resource Designer class.
@@ -55,6 +79,15 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Name">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Name" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Intensity">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Intensity" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.TargetReps">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "TargetReps" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.TargetSets">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "TargetSets" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Length">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Length" generated properties.</summary>
         </member>
@@ -63,6 +96,9 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Color">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Color" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Workout">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Workout" generated properties.</summary>
         </member>
         <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
             <summary>
@@ -73,6 +109,15 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Name">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Name" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Intensity">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Intensity" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.TargetReps">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "TargetReps" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.TargetSets">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "TargetSets" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Length">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Length" generated properties.</summary>
         </member>
@@ -81,6 +126,9 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Color">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Color" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Workout">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Workout" generated properties.</summary>
         </member>
     </members>
 </doc>
