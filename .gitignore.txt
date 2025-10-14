@@ -2,6 +2,9 @@
 bin/
 obj/
 
+Feleves feladat/bin/
+Feleves feladat/obj/
+
 # User-specific files
 *.user
 *.suo
