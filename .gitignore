@@ -1,0 +1,13 @@
+# Build outputs (Maui project folder)
+Feleves feladat/bin/
+Feleves feladat/obj/
+
+# IDE folders
+.vs/
+.vscode/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
