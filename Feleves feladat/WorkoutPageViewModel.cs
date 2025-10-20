@@ -12,15 +12,5 @@ namespace Feleves_feladat
     {
         [ObservableProperty]
         private Workout workout;
-
-        //public void Init(Workout workout)
-        //{
-        //    Workout = workout;
-        //}
-
-        //public WorkoutPageViewModel(Workout workout)
-        //{
-        //    this.workout = workout;
-        //}
     }
 }

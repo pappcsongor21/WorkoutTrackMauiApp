@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:local="clr-namespace:Feleves_feladat"
              x:Class="Feleves_feladat.WorkoutPage"
              Title="WorkoutPage">
     <ContentPage.Resources>
         <local:ExerciseSetsAndRepsConverter x:Key="SetXRepsConv"/>
     </ContentPage.Resources>
-    <Grid RowDefinitions="Auto, *">
+    <Grid RowDefinitions="Auto, *"
+          BackgroundColor="{StaticResource PrimaryColor}">
         <Label
             Text="{Binding Workout.Name}"
             FontSize="24"
@@ -18,20 +20,68 @@
             VerticalTextAlignment="Center"
             BackgroundColor="{Binding Workout.Color}"
             TextColor="White"/>
-        <ScrollView Grid.Row="1" Margin="0, 0, 0, 0" Padding="0">
+        <ScrollView Grid.Row="1" Margin="0, 0, 0, 0" Padding="3, 0, 3, 0">
             <CollectionView
                 ItemsSource="{Binding Workout.Exercises}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <VerticalStackLayout>
-                            <Label
-                                Text="{Binding Name}"
-                                FontSize="20"
-                                HorizontalOptions="Fill"
-                                HorizontalTextAlignment="Start"/>
-                            <Label Text="{Binding Intensity}"/>
-                            <Label Text="{Binding ., Converter={StaticResource SetXRepsConv}}"/>
-                        </VerticalStackLayout>
+                        <Border
+                            Margin="0,5,0,0"
+                            Padding="10"
+                            HeightRequest="120"
+                            StrokeShape="RoundRectangle 5"
+                            BackgroundColor="{StaticResource ThirdColor}">
+                            <Grid ColumnDefinitions="Auto,*,Auto"
+                                  RowDefinitions="Auto,Auto,*">
+                                <Label
+                                    Grid.Column="0"
+                                    Text="{Binding Name}"
+                                    FontAttributes="Bold"
+                                    FontSize="20"
+                                    HorizontalOptions="Fill"
+                                    HorizontalTextAlignment="Start"/>
+                                <Label 
+                                    Grid.Column="2"
+                                    Text="{Binding Intensity}"/>
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Text="{Binding ., Converter={StaticResource SetXRepsConv}}"/>
+                                <CollectionView
+                                    Grid.Row="2"
+                                    Grid.RowSpan="3"
+                                    ItemsSource="{Binding PerformedSets}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <HorizontalStackLayout>
+                                                <Entry Text="{Binding RepCount}" 
+                                                       Placeholder="Reps"
+                                                       HeightRequest="30"
+                                                       WidthRequest="40"
+                                                       
+                                                       Keyboard="Numeric"
+                                                       PlaceholderColor="Black"
+                                                       TextColor="Black"
+                                                       BackgroundColor="{StaticResource SecondaryColor}"/>
+                                                <!--<Picker></Picker>-->
+                                                <Entry Text="{Binding repsInReserve}"
+                                                       Placeholder="RIR"
+                                                       HeightRequest="30"
+                                                       WidthRequest="40"
+                                                       Keyboard="Numeric"
+                                                       PlaceholderColor="Black"
+                                                       TextColor="Black"
+                                                    />
+                                            </HorizontalStackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Horizontal"
+                                                           ItemSpacing="5"/>
+                                    </CollectionView.ItemsLayout>
+                                </CollectionView>
+                            </Grid>
+                        </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

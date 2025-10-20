@@ -25,6 +25,10 @@ namespace Feleves_feladat
                     new Exercise(){Name = "ring dip hold", Intensity = "slightly assisted", TargetReps = "15s", TargetSets = 3},
                     new Exercise(){Name = "inverted row", Intensity = "-1 step", TargetReps = "8-12", TargetSets = 3},
                     new Exercise(){Name = "pushup", Intensity = "", TargetReps = "8-12", TargetSets = 3}
+                    //new Exercise("banded pullup", "35kg band", "5-8", 3),
+                    //new Exercise("ring dip hold", "slightly assisted", "15s", 3),
+                    //new Exercise("inverted row", "-1 step", "8-12", 3),
+                    //new Exercise("pushup", "", "8-12", 3)
                 ]
             });
             Workouts.Add(new Workout() { Name = "Lower body", Color = "Green" });
