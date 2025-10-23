@@ -11,14 +11,16 @@ namespace Feleves_feladat
 {
     public partial class MainPageViewModel: ObservableObject
     {
+        IDbService db;
         public ObservableCollection<Goal> Goals { get; set; }
 
-        public MainPageViewModel()
+        public MainPageViewModel(IDbService db)
         {
             Goals = new ObservableCollection<Goal>();
             Goals.Add(new Goal() { Name = "10 pullups" });
             Goals.Add(new Goal() { Name = "7 clean dips" });
             Goals.Add(new Goal() { Name = "3x4 pistol squats" });
+            this.db = db;
         }
 
         [RelayCommand]

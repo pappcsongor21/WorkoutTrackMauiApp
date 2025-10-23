@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,6 +11,11 @@ namespace Feleves_feladat.Models
 {
     public partial class Exercise : ObservableObject
     {
+        [PrimaryKey]
+        [AutoIncrement]
+        public int Id { get; set; }
+
+        public int WorkoutId {  get; set; } //Foreign key
         [ObservableProperty]
         private string name;
 
@@ -22,6 +28,7 @@ namespace Feleves_feladat.Models
         [ObservableProperty]
         private int targetSets;
 
+        [Ignore]
         public ObservableCollection<PerformedSet> PerformedSets { get; set; }
 
         public Exercise()
@@ -51,16 +58,5 @@ namespace Feleves_feladat.Models
                 PerformedSets.Add(new PerformedSet() { SetNumber = i + 1 });
             }
         }
-    }
-    public partial class PerformedSet : ObservableObject
-    {
-        [ObservableProperty]
-        private int setNumber;
-
-        [ObservableProperty]
-        private int repCount;
-
-        [ObservableProperty]
-        private int repsInReserve; // or difficulty
     }
 }

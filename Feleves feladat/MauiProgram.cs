@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Feleves_feladat.Services;
+using Microsoft.Extensions.Logging;
 
 namespace Feleves_feladat
 {
@@ -14,6 +15,12 @@ namespace Feleves_feladat
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
+            builder.Services.AddSingleton<IDbService, DbService>(s =>
+            {
+                var dbPath = Path.Combine(FileSystem.AppDataDirectory, "workouts.db3");
+                return new DbService(dbPath);
+            });
 
             builder.Services.AddSingleton<MainPageViewModel>();
             builder.Services.AddTransient<ChooseWorkoutPageViewModel>();
