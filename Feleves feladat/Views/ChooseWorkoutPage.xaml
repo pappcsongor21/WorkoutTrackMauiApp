@@ -4,9 +4,6 @@
              xmlns:local="clr-namespace:Feleves_feladat"
              x:Class="Feleves_feladat.ChooseWorkoutPage"
              Title="ChooseWorkoutPage">
-    <ContentPage.BindingContext>
-        <local:ChooseWorkoutPageViewModel/>
-    </ContentPage.BindingContext>
     <ContentPage.Resources>
         <local:WorkoutColorConverter x:Key="WorkoutColorConv"/>
     </ContentPage.Resources>

@@ -2,9 +2,17 @@ namespace Feleves_feladat;
 
 public partial class ChooseWorkoutPage : ContentPage
 {
-	public ChooseWorkoutPage()
+	ChooseWorkoutPageViewModel vm;
+	public ChooseWorkoutPage(ChooseWorkoutPageViewModel vm)
 	{
 		InitializeComponent();
-        //NavigationPage.SetHasNavigationBar(this, false);
+		BindingContext = vm;
+		this.vm = vm;
     }
+
+	protected override async void OnAppearing()
+	{
+		base.OnAppearing();
+		await vm.InitializeAsync();
+	}
 }

@@ -21,8 +21,6 @@ namespace Feleves_feladat
             Goals.Add(new Goal() { Name = "7 clean dips" });
             Goals.Add(new Goal() { Name = "3x4 pistol squats" });
             this.db = db;
-
-
         }
 
         [RelayCommand]

@@ -6,15 +6,14 @@ namespace Feleves_feladat
 {
     public partial class Workout : ObservableObject
     {
-        [PrimaryKey]
-        [AutoIncrement]
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
         [ObservableProperty]
         private string name;
 
         [ObservableProperty]
-        private DateTime length;
+        private TimeSpan length;
 
         [ObservableProperty]
         [property:Ignore]

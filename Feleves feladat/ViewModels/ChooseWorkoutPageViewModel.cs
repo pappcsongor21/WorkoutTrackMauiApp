@@ -19,6 +19,8 @@ namespace Feleves_feladat
         {
             this.db = db;
             Workouts = new ObservableCollection<Workout>();
+            //InitalizeAsync().Wait();
+            //maybe its a deadlock
         }
 
         [RelayCommand]
@@ -30,6 +32,15 @@ namespace Feleves_feladat
             };
 
             await Shell.Current.GoToAsync("workout", workout);
+        }
+
+        public async Task InitializeAsync()
+        {
+            var workouts = await db.GetWorkoutsAsync();
+            foreach (var workout in workouts)
+            {
+                Workouts.Add(workout);
+            }
         }
     }
 }
