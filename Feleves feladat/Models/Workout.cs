@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Feleves_feladat.Models;
 using SQLite;
+using System.Collections.ObjectModel;
 
 namespace Feleves_feladat
 {
@@ -16,8 +17,8 @@ namespace Feleves_feladat
         private TimeSpan length;
 
         [ObservableProperty]
-        [property:Ignore]
-        private Exercise[] exercises;
+        [property: Ignore]
+        private ObservableCollection<Exercise> exercises = new();
 
         [ObservableProperty]
         private string color;

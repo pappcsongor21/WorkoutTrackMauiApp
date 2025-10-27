@@ -23,13 +23,13 @@ namespace Feleves_feladat.Services
             db.CreateTableAsync<PerformedSet>().Wait();
             db.CreateTableAsync<ExerciseTemplate>().Wait();
 
-            InitializeDb();
+            GenerarteSeedData();
             Debug.WriteLine($" SQLite database path: {dbPath}");
         }
 
-        public async void InitializeDb()
+        public async void GenerarteSeedData()
         {
-            Workout upperBodyCali = new() { Name = "Upper body cali", Color = "Purple" };
+            Workout upperBodyCali = new() { Name = "Upper body cali", Color = "Purple"};
             await CreateWorkoutAsync(upperBodyCali);
 
             await CreateExerciseAsync(new Exercise() { Name = "banded pullup", Intensity = "35kg band", TargetReps = "5-8", TargetSets = 3, WorkoutId = upperBodyCali.Id });
@@ -37,7 +37,7 @@ namespace Feleves_feladat.Services
             await CreateExerciseAsync(new Exercise() { Name = "inverted row", Intensity = "-1 step", TargetReps = "8-12", TargetSets = 3, WorkoutId = upperBodyCali.Id });
             await CreateExerciseAsync(new Exercise() { Name = "pushup", Intensity = "", TargetReps = "8-12", TargetSets = 3, WorkoutId = upperBodyCali.Id });
 
-            Workout workout1 = new() { Name = "Lower body", Color = "Green" };
+            Workout workout1 = new() { Name = "Lower body", Color = "Green"};
             await CreateWorkoutAsync(workout1);
             await CreateWorkoutAsync(new() { Name = "Upper body cali B", Color = "Purple" });
         }

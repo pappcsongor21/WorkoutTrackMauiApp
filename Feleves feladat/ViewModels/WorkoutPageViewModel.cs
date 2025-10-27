@@ -12,5 +12,19 @@ namespace Feleves_feladat
     {
         [ObservableProperty]
         private Workout workout;
+
+        IDbService db;
+        public WorkoutPageViewModel(IDbService db)
+        {
+            this.db = db;
+        }
+        public async Task InitializeExercisesFromDb()
+        {
+            var exercises = await db.GetExercisesByWorkoutIdAsync(Workout.Id);
+            foreach(var exercise in exercises)
+            {
+                Workout.Exercises.Add(exercise);
+            }
+        }
     }
 }
