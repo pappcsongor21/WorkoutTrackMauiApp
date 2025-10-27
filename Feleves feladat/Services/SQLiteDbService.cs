@@ -9,25 +9,27 @@ using System.Threading.Tasks;
 
 namespace Feleves_feladat.Services
 {
-    public class DbService : IDbService
+    public class SQLiteDbService : IDbService
     {
         private readonly SQLiteAsyncConnection db;
         private int globalWorkoutId = 1;
         private int globalExerciseId = 1;
 
-        public DbService(string dbPath)
+        SQLiteOpenFlags Flags = SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create;
+
+        public SQLiteDbService(string dbPath)
         {
-            db = new SQLiteAsyncConnection(dbPath);
+            db = new SQLiteAsyncConnection(dbPath, Flags);
             db.CreateTableAsync<Workout>().Wait();
             db.CreateTableAsync<Exercise>().Wait();
             db.CreateTableAsync<PerformedSet>().Wait();
             db.CreateTableAsync<ExerciseTemplate>().Wait();
 
-            GenerarteSeedData();
+            GenerateSeedData();
             Debug.WriteLine($" SQLite database path: {dbPath}");
         }
 
-        public async void GenerarteSeedData()
+        public async void GenerateSeedData()
         {
             Workout upperBodyCali = new() { Name = "Upper body cali", Color = "Purple"};
             await CreateWorkoutAsync(upperBodyCali);

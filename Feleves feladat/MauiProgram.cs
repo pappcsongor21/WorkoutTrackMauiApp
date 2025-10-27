@@ -16,10 +16,10 @@ namespace Feleves_feladat
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            builder.Services.AddSingleton<IDbService, DbService>(s =>
+            builder.Services.AddSingleton<IDbService, SQLiteDbService>(s =>
             {
                 var dbPath = Path.Combine(FileSystem.AppDataDirectory, "workouts.db3");
-                return new DbService(dbPath);
+                return new SQLiteDbService(dbPath);
             });
 
             builder.Services.AddSingleton<MainPageViewModel>();
