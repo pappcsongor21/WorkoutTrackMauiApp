@@ -20,6 +20,7 @@ namespace Feleves_feladat
         }
         public async Task InitializeExercisesFromDb()
         {
+            Workout.Exercises.Clear();
             var exercises = await db.GetExercisesByWorkoutIdAsync(Workout.Id);
             foreach(var exercise in exercises)
             {

@@ -36,6 +36,7 @@ namespace Feleves_feladat
 
         public async Task InitializeAsync()
         {
+            Workouts.Clear();
             var workouts = await db.GetWorkoutsAsync();
             foreach (var workout in workouts)
             {

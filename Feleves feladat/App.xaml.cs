@@ -2,11 +2,17 @@
 {
     public partial class App : Application
     {
+        public string DbPath = Path.Combine(FileSystem.AppDataDirectory, "workouts.db3");
+
         public App()
         {
             InitializeComponent();
             Routing.RegisterRoute("workout", typeof(WorkoutPage));
             Routing.RegisterRoute("chooseworkout", typeof(ChooseWorkoutPage));
+
+            // Fejlesztés alatt mindig töröljük az adatbázist
+            if (File.Exists(DbPath))
+                File.Delete(DbPath);
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
