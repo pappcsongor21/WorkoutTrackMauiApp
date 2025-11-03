@@ -19,6 +19,10 @@ namespace Feleves_feladat
         private Workout realizedWorkout;
 
         IDbService db;
+
+        public bool AllExercisesDone =>
+            RealizedWorkout?.Exercises?.All(e => e.IsDone) == true;
+
         public WorkoutPageViewModel(IDbService db)
         {
             this.db = db;
@@ -37,6 +41,13 @@ namespace Feleves_feladat
                 WorkoutTemplate.Exercises.Add(exercise);
                 var newExercise = exercise.GetDeepCopy();
                 newExercise.WorkoutId = RealizedWorkout.Id;
+
+                newExercise.PropertyChanged += (_, e) =>
+                {
+                    if (e.PropertyName == nameof(Exercise.IsDone))
+                        OnPropertyChanged(nameof(AllExercisesDone));
+                };
+
                 RealizedWorkout.Exercises.Add(newExercise);
             }
         }

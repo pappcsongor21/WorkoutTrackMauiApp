@@ -38,6 +38,7 @@ namespace Feleves_feladat.Services
             await CreateExerciseAsync(new Exercise() { Name = "ring dip hold", Intensity = "slightly assisted", TargetReps = "15s", TargetSets = 3, WorkoutId = upperBodyCali.Id });
             await CreateExerciseAsync(new Exercise() { Name = "inverted row", Intensity = "-1 step", TargetReps = "8-12", TargetSets = 3, WorkoutId = upperBodyCali.Id });
             await CreateExerciseAsync(new Exercise() { Name = "pushup", Intensity = "", TargetReps = "8-12", TargetSets = 3, WorkoutId = upperBodyCali.Id });
+            await CreateExerciseAsync(new Exercise() { Name = "pike leg raise", Intensity = "fingertips at knee", TargetReps = "5-8", TargetSets = 3, WorkoutId = upperBodyCali.Id });
 
             WorkoutTemplate workout1 = new() { Name = "Lower body", Color = "Green"};
             await CreateWorkoutTemplateAsync(workout1);

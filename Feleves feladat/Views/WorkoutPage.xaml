@@ -21,14 +21,15 @@
             BackgroundColor="{Binding RealizedWorkout.Color}"
             TextColor="White"/>
         <ScrollView Grid.Row="1" Margin="0, 0, 0, 0" Padding="3, 0, 3, 0">
-            <CollectionView
+            <Grid RowDefinitions="Auto, *">
+                <CollectionView
                 ItemsSource="{Binding RealizedWorkout.Exercises}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border
                             Margin="0,5,0,0"
                             Padding="10"
-                            HeightRequest="120"
+                            HeightRequest="140"
                             StrokeShape="RoundRectangle 5"
                             BackgroundColor="{StaticResource ThirdColor}">
                             <Border.Triggers>
@@ -99,12 +100,22 @@
                                     HeightRequest="30"
                                     WidthRequest="60"
                                     HorizontalOptions="End"
-                                    Margin="0,0,0,5"/>
+                                    Margin="0,0,0,5"
+                                    BackgroundColor="{StaticResource FourthColor}"/>
                             </Grid>
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <Button
+                Text="Done"
+                Grid.Row="1"
+                HeightRequest="70"
+                Margin="0,5,0,5"
+                IsVisible="{Binding AllExercisesDone}"
+                BackgroundColor="{StaticResource FourthColor}"
+                />
+            </Grid>
         </ScrollView>
     </Grid>
 </ContentPage>
