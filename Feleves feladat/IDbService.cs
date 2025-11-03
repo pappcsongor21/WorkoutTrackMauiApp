@@ -9,10 +9,10 @@ namespace Feleves_feladat
 {
     public interface IDbService
     {
-        Task<List<Workout>> GetWorkoutsAsync();
-        Task<int> CreateWorkoutAsync(Workout workout);
-        Task<int> UpdateWorkoutAsync(Workout workout);
-        Task<int> DeleteWorkoutAsync(Workout workout);
+        Task<List<WorkoutTemplate>> GetWorkoutTemplatesAsync();
+        Task<int> CreateWorkoutTemplateAsync(WorkoutTemplate workout);
+        Task<int> UpdateWorkoutTemplateAsync(WorkoutTemplate workout);
+        Task<int> DeleteWorkoutTemplateAsync(WorkoutTemplate workout);
 
         Task<List<Exercise>> GetExercisesAsync();
         Task<List<Exercise>> GetExercisesByWorkoutIdAsync(int workoutId);

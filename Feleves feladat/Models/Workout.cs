@@ -1,26 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Feleves_feladat.Models;
-using SQLite;
-using System.Collections.ObjectModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Feleves_feladat
+namespace Feleves_feladat.Models
 {
-    public partial class Workout : ObservableObject
+    public partial class Workout : WorkoutTemplate
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
-
         [ObservableProperty]
-        private string name;
-
-        [ObservableProperty]
-        private TimeSpan length;
-
-        [ObservableProperty]
-        [property: Ignore]
-        private ObservableCollection<Exercise> exercises = new();
-
-        [ObservableProperty]
-        private string color;
+        private int length;
     }
 }

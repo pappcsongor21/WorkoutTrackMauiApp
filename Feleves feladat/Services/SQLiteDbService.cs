@@ -20,7 +20,7 @@ namespace Feleves_feladat.Services
         public SQLiteDbService(string dbPath)
         {
             db = new SQLiteAsyncConnection(dbPath, Flags);
-            db.CreateTableAsync<Workout>().Wait();
+            db.CreateTableAsync<WorkoutTemplate>().Wait();
             db.CreateTableAsync<Exercise>().Wait();
             db.CreateTableAsync<PerformedSet>().Wait();
             db.CreateTableAsync<ExerciseTemplate>().Wait();
@@ -31,34 +31,34 @@ namespace Feleves_feladat.Services
 
         public async void GenerateSeedData()
         {
-            Workout upperBodyCali = new() { Name = "Upper body cali", Color = "Purple"};
-            await CreateWorkoutAsync(upperBodyCali);
+            WorkoutTemplate upperBodyCali = new() { Name = "Upper body cali", Color = "Purple"};
+            await CreateWorkoutTemplateAsync(upperBodyCali);
 
             await CreateExerciseAsync(new Exercise() { Name = "banded pullup", Intensity = "35kg band", TargetReps = "5-8", TargetSets = 3, WorkoutId = upperBodyCali.Id });
             await CreateExerciseAsync(new Exercise() { Name = "ring dip hold", Intensity = "slightly assisted", TargetReps = "15s", TargetSets = 3, WorkoutId = upperBodyCali.Id });
             await CreateExerciseAsync(new Exercise() { Name = "inverted row", Intensity = "-1 step", TargetReps = "8-12", TargetSets = 3, WorkoutId = upperBodyCali.Id });
             await CreateExerciseAsync(new Exercise() { Name = "pushup", Intensity = "", TargetReps = "8-12", TargetSets = 3, WorkoutId = upperBodyCali.Id });
 
-            Workout workout1 = new() { Name = "Lower body", Color = "Green"};
-            await CreateWorkoutAsync(workout1);
-            await CreateWorkoutAsync(new() { Name = "Upper body cali B", Color = "Purple" });
+            WorkoutTemplate workout1 = new() { Name = "Lower body", Color = "Green"};
+            await CreateWorkoutTemplateAsync(workout1);
+            await CreateWorkoutTemplateAsync(new() { Name = "Upper body cali B", Color = "Purple" });
         }
 
         #region:WorkoutCRUD
-        public async Task<List<Workout>> GetWorkoutsAsync()
+        public async Task<List<WorkoutTemplate>> GetWorkoutTemplatesAsync()
         {
-            return await db.Table<Workout>().ToListAsync();
+            return await db.Table<WorkoutTemplate>().ToListAsync();
         }
-        public async Task<int> CreateWorkoutAsync(Workout workout)
+        public async Task<int> CreateWorkoutTemplateAsync(WorkoutTemplate workout)
         {
             workout.Id = globalWorkoutId++;
             return await db.InsertAsync(workout);
         }
-        public async Task<int> UpdateWorkoutAsync(Workout workout)
+        public async Task<int> UpdateWorkoutTemplateAsync(WorkoutTemplate workout)
         {
             return await db.UpdateAsync(workout);
         }
-        public async Task<int> DeleteWorkoutAsync(Workout workout)
+        public async Task<int> DeleteWorkoutTemplateAsync(WorkoutTemplate workout)
         {
             return await db.DeleteAsync(workout);
         }

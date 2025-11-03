@@ -29,7 +29,7 @@
                     BackgroundColor="{StaticResource PrimaryColor}"
                     >
             <VerticalStackLayout>
-                <CollectionView ItemsSource="{Binding Workouts}">
+                <CollectionView ItemsSource="{Binding WorkoutTemplates}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <VerticalStackLayout>

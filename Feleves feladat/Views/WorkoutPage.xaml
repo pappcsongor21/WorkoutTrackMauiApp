@@ -11,18 +11,18 @@
     <Grid RowDefinitions="Auto, *"
           BackgroundColor="{StaticResource PrimaryColor}">
         <Label
-            Text="{Binding Workout.Name}"
+            Text="{Binding RealizedWorkout.Name}"
             FontSize="24"
             FontAttributes="Bold"
             HeightRequest="50"
             HorizontalOptions="Fill"
             HorizontalTextAlignment="Center"
             VerticalTextAlignment="Center"
-            BackgroundColor="{Binding Workout.Color}"
+            BackgroundColor="{Binding RealizedWorkout.Color}"
             TextColor="White"/>
         <ScrollView Grid.Row="1" Margin="0, 0, 0, 0" Padding="3, 0, 3, 0">
             <CollectionView
-                ItemsSource="{Binding Workout.Exercises}">
+                ItemsSource="{Binding RealizedWorkout.Exercises}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border
@@ -31,6 +31,15 @@
                             HeightRequest="120"
                             StrokeShape="RoundRectangle 5"
                             BackgroundColor="{StaticResource ThirdColor}">
+                            <Border.Triggers>
+                                <DataTrigger
+                                    TargetType="Border"
+                                    Binding="{Binding IsDone}"
+                                    Value="True">
+                                    <Setter Property="BackgroundColor" Value="LightGreen"/>
+                                    <Setter Property="Opacity" Value="0.7"/>
+                                </DataTrigger>
+                            </Border.Triggers>
                             <Grid ColumnDefinitions="Auto,*,Auto"
                                   RowDefinitions="Auto,Auto,*">
                                 <Label
@@ -55,7 +64,7 @@
                                         <DataTemplate>
                                             <HorizontalStackLayout>
                                                 <Entry Text="{Binding RepCount}" 
-                                                       Placeholder="Reps"
+                                                       Placeholder="{Binding RepCount}"
                                                        HeightRequest="30"
                                                        WidthRequest="40"
                                                        
@@ -65,7 +74,7 @@
                                                        BackgroundColor="{StaticResource SecondaryColor}"/>
                                                 <!--<Picker></Picker>-->
                                                 <Entry Text="{Binding repsInReserve}"
-                                                       Placeholder="RIR"
+                                                       Placeholder="{Binding repsInReserve}"
                                                        HeightRequest="30"
                                                        WidthRequest="40"
                                                        Keyboard="Numeric"
@@ -82,6 +91,8 @@
                                 </CollectionView>
                                 <Button
                                     Text="Done"
+                                    Command="{Binding Path=BindingContext.ExerciseIsDoneCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+                                    CommandParameter="{Binding .}"
                                     Padding="0"
                                     Grid.Row="2"
                                     Grid.Column="2"

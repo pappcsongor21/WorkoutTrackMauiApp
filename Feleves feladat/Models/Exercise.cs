@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Feleves_feladat.Models
@@ -16,6 +17,7 @@ namespace Feleves_feladat.Models
         public int Id { get; set; }
 
         public int WorkoutId {  get; set; } //Foreign key
+
         [ObservableProperty]
         private string name;
 
@@ -27,6 +29,9 @@ namespace Feleves_feladat.Models
 
         [ObservableProperty]
         private int targetSets;
+
+        [ObservableProperty]
+        private bool isDone;
 
         [Ignore]
         public ObservableCollection<PerformedSet> PerformedSets { get; set; }
@@ -44,7 +49,10 @@ namespace Feleves_feladat.Models
             PerformedSets = new ObservableCollection<PerformedSet>();
             GeneratePerformedReps();
         }
-
+        public Exercise GetDeepCopy()
+        {
+            return JsonSerializer.Deserialize<Exercise>(JsonSerializer.Serialize(this));
+        }
         partial void OnTargetSetsChanged(int value)
         {
             GeneratePerformedReps();
@@ -58,5 +66,6 @@ namespace Feleves_feladat.Models
                 PerformedSets.Add(new PerformedSet() { SetNumber = i + 1 });
             }
         }
+
     }
 }
