@@ -16,12 +16,12 @@ namespace Feleves_feladat
         private WorkoutTemplate workoutTemplate;
 
         [ObservableProperty]
-        private Workout realizedWorkout;
+        private Workout performedWorkout;
 
-        IDbService db;
+        private readonly IDbService db;
 
         public bool AllExercisesDone =>
-            RealizedWorkout?.Exercises?.All(e => e.IsDone) == true;
+            PerformedWorkout?.Exercises?.All(e => e.IsDone) == true;
 
         public WorkoutPageViewModel(IDbService db)
         {
@@ -30,8 +30,8 @@ namespace Feleves_feladat
         public async Task InitializeExercisesFromDb()
         {
             WorkoutTemplate.Exercises.Clear();
-            var exercises = await db.GetExercisesByWorkoutIdAsync((int)WorkoutTemplate.Id);
-            RealizedWorkout = new()
+            var exercises = await db.GetExercisesByWorkoutTemplateIdAsync(WorkoutTemplate.Id);
+            PerformedWorkout = new()
             {
                 Name = WorkoutTemplate.Name,
                 Color = WorkoutTemplate.Color
@@ -40,7 +40,7 @@ namespace Feleves_feladat
             {
                 WorkoutTemplate.Exercises.Add(exercise);
                 var newExercise = exercise.GetDeepCopy();
-                newExercise.WorkoutId = RealizedWorkout.Id;
+                newExercise.WorkoutId = PerformedWorkout.Id;
 
                 newExercise.PropertyChanged += (_, e) =>
                 {
@@ -48,14 +48,25 @@ namespace Feleves_feladat
                         OnPropertyChanged(nameof(AllExercisesDone));
                 };
 
-                RealizedWorkout.Exercises.Add(newExercise);
+                PerformedWorkout.Exercises.Add(newExercise);
             }
         }
 
         [RelayCommand]
-        public async Task ExerciseIsDoneAsync(Exercise exercise)
+        public void ExerciseIsDone(Exercise exercise)
         {
             exercise.IsDone = true;
+        }
+
+        [RelayCommand]
+        public async Task WorkoutFinishedAsync()
+        {
+            await db.CreateWorkoutAsync(PerformedWorkout);
+
+            foreach(Exercise exercise in PerformedWorkout.Exercises)
+            {
+                await db.CreateExerciseAsync(exercise);
+            }
         }
     }
 }

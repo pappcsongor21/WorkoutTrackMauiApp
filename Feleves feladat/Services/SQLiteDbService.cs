@@ -12,8 +12,6 @@ namespace Feleves_feladat.Services
     public class SQLiteDbService : IDbService
     {
         private readonly SQLiteAsyncConnection db;
-        private int globalWorkoutId = 1;
-        private int globalExerciseId = 1;
 
         SQLiteOpenFlags Flags = SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create;
 
@@ -53,7 +51,6 @@ namespace Feleves_feladat.Services
         }
         public async Task<int> CreateWorkoutTemplateAsync(WorkoutTemplate workout)
         {
-            workout.Id = globalWorkoutId++;
             return await db.InsertAsync(workout);
         }
         public async Task<int> UpdateWorkoutTemplateAsync(WorkoutTemplate workout)
@@ -73,7 +70,6 @@ namespace Feleves_feladat.Services
         }
         public async Task<int> CreateWorkoutAsync(Workout workout)
         {
-            workout.Id = globalWorkoutId++;
             return await db.InsertAsync(workout);
         }
         public async Task<int> UpdateWorkoutAsync(Workout workout)
@@ -102,7 +98,6 @@ namespace Feleves_feladat.Services
         }
         public async Task<int> CreateExerciseAsync(Exercise exercise)
         {
-            exercise.Id = globalExerciseId++;
             return await db.InsertAsync(exercise);
         }
         public async Task<int> UpdateExerciseAsync(Exercise exercise)

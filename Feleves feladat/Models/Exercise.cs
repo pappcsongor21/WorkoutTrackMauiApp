@@ -12,11 +12,12 @@ namespace Feleves_feladat.Models
 {
     public partial class Exercise : ObservableObject
     {
+        private static int nextId = 1;
         [PrimaryKey]
         [AutoIncrement]
-        public int Id { get; set; }
-
+        public int Id { get; set; } /*= nextId++;*/
         public int WorkoutId {  get; set; } //Foreign key
+        public int WorkoutTemplateId { get; set; }
 
         [ObservableProperty]
         private string name;

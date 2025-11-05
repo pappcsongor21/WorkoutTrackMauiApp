@@ -7,8 +7,10 @@ namespace Feleves_feladat
 {
     public partial class WorkoutTemplate : ObservableObject
     {
+        private static int nextId = 1;
+
         [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        public int Id { get; set; }/* = nextId++;*/
 
         [ObservableProperty]
         private string name;
@@ -19,5 +21,7 @@ namespace Feleves_feladat
 
         [ObservableProperty]
         private string color;
+
+        //public bool IsTemplate {  get; set; }
     }
 }
