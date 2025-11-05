@@ -21,6 +21,7 @@ namespace Feleves_feladat.Services
         {
             db = new SQLiteAsyncConnection(dbPath, Flags);
             db.CreateTableAsync<WorkoutTemplate>().Wait();
+            db.CreateTableAsync<Workout>().Wait();
             db.CreateTableAsync<Exercise>().Wait();
             db.CreateTableAsync<PerformedSet>().Wait();
             db.CreateTableAsync<ExerciseTemplate>().Wait();
@@ -45,7 +46,7 @@ namespace Feleves_feladat.Services
             await CreateWorkoutTemplateAsync(new() { Name = "Upper body cali B", Color = "Purple" });
         }
 
-        #region:WorkoutCRUD
+        #region:WorkoutTemplateCRUD
         public async Task<List<WorkoutTemplate>> GetWorkoutTemplatesAsync()
         {
             return await db.Table<WorkoutTemplate>().ToListAsync();
@@ -65,6 +66,26 @@ namespace Feleves_feladat.Services
         }
         #endregion
 
+        #region:WorkoutCRUD
+        public async Task<List<Workout>> GetWorkoutsAsync()
+        {
+            return await db.Table<Workout>().ToListAsync();
+        }
+        public async Task<int> CreateWorkoutAsync(Workout workout)
+        {
+            workout.Id = globalWorkoutId++;
+            return await db.InsertAsync(workout);
+        }
+        public async Task<int> UpdateWorkoutAsync(Workout workout)
+        {
+            return await db.UpdateAsync(workout);
+        }
+        public async Task<int> DeleteWorkoutAsync(Workout workout)
+        {
+            return await db.DeleteAsync(workout);
+        }
+        #endregion
+
         #region:ExerciseCRUD
         public async Task<List<Exercise>> GetExercisesAsync()
         {
@@ -73,6 +94,11 @@ namespace Feleves_feladat.Services
         public async Task<List<Exercise>> GetExercisesByWorkoutIdAsync(int workoutId)
         {
             return await db.Table<Exercise>().Where(e => e.WorkoutId == workoutId).ToListAsync();
+        }
+        public async Task<List<Exercise>> GetExercisesByWorkoutTemplateIdAsync(int workoutTemplateId)
+        {
+            return await db.Table<Exercise>().Where(e => e.WorkoutId == workoutTemplateId).ToListAsync();
+
         }
         public async Task<int> CreateExerciseAsync(Exercise exercise)
         {
