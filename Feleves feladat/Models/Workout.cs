@@ -11,5 +11,8 @@ namespace Feleves_feladat.Models
     {
         [ObservableProperty]
         private int length;
+
+        [ObservableProperty]
+        private DateTime date;
     }
 }
