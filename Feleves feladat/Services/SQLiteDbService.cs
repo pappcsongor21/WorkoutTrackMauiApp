@@ -18,7 +18,6 @@ namespace Feleves_feladat.Services
         public SQLiteDbService(string dbPath)
         {
             db = new SQLiteAsyncConnection(dbPath, Flags);
-            db.CreateTableAsync<WorkoutTemplate>().Wait();
             db.CreateTableAsync<Workout>().Wait();
             db.CreateTableAsync<Exercise>().Wait();
             db.CreateTableAsync<PerformedSet>().Wait();
@@ -30,7 +29,7 @@ namespace Feleves_feladat.Services
 
         public async void GenerateSeedData()
         {
-            WorkoutTemplate upperBodyCali = new() { Name = "Upper body cali", Color = "Purple"};
+            Workout upperBodyCali = new() { Name = "Upper body cali", Color = "Purple", IsTemplate = true};
             await CreateWorkoutTemplateAsync(upperBodyCali);
 
             await CreateExerciseAsync(new Exercise() { Name = "banded pullup", Intensity = "35kg band", TargetReps = "5-8", TargetSets = 3, WorkoutId = upperBodyCali.Id });
@@ -39,25 +38,26 @@ namespace Feleves_feladat.Services
             await CreateExerciseAsync(new Exercise() { Name = "pushup", Intensity = "", TargetReps = "8-12", TargetSets = 3, WorkoutId = upperBodyCali.Id });
             await CreateExerciseAsync(new Exercise() { Name = "pike leg raise", Intensity = "fingertips at knee", TargetReps = "5-8", TargetSets = 3, WorkoutId = upperBodyCali.Id });
 
-            WorkoutTemplate workout1 = new() { Name = "Lower body", Color = "Green"};
+            Workout workout1 = new() { Name = "Lower body", Color = "Green", IsTemplate = true };
             await CreateWorkoutTemplateAsync(workout1);
-            await CreateWorkoutTemplateAsync(new() { Name = "Upper body cali B", Color = "Purple" });
+            await CreateWorkoutTemplateAsync(new() { Name = "Upper body cali B", Color = "Purple", IsTemplate = true });
         }
 
         #region:WorkoutTemplateCRUD
-        public async Task<List<WorkoutTemplate>> GetWorkoutTemplatesAsync()
+        public async Task<List<Workout>> GetWorkoutTemplatesAsync()
         {
-            return await db.Table<WorkoutTemplate>().ToListAsync();
+            var workouts =  await db.Table<Workout>().ToListAsync();
+            return workouts.FindAll(w => w.IsTemplate);
         }
-        public async Task<int> CreateWorkoutTemplateAsync(WorkoutTemplate workout)
+        public async Task<int> CreateWorkoutTemplateAsync(Workout workout)
         {
             return await db.InsertAsync(workout);
         }
-        public async Task<int> UpdateWorkoutTemplateAsync(WorkoutTemplate workout)
+        public async Task<int> UpdateWorkoutTemplateAsync(Workout workout)
         {
             return await db.UpdateAsync(workout);
         }
-        public async Task<int> DeleteWorkoutTemplateAsync(WorkoutTemplate workout)
+        public async Task<int> DeleteWorkoutTemplateAsync(Workout workout)
         {
             return await db.DeleteAsync(workout);
         }
@@ -90,11 +90,6 @@ namespace Feleves_feladat.Services
         public async Task<List<Exercise>> GetExercisesByWorkoutIdAsync(int workoutId)
         {
             return await db.Table<Exercise>().Where(e => e.WorkoutId == workoutId).ToListAsync();
-        }
-        public async Task<List<Exercise>> GetExercisesByWorkoutTemplateIdAsync(int workoutTemplateId)
-        {
-            return await db.Table<Exercise>().Where(e => e.WorkoutId == workoutTemplateId).ToListAsync();
-
         }
         public async Task<int> CreateExerciseAsync(Exercise exercise)
         {

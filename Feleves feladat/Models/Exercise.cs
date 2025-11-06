@@ -17,7 +17,6 @@ namespace Feleves_feladat.Models
         [AutoIncrement]
         public int Id { get; set; } /*= nextId++;*/
         public int WorkoutId {  get; set; } //Foreign key
-        public int WorkoutTemplateId { get; set; }
 
         [ObservableProperty]
         private string name;

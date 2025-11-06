@@ -12,19 +12,19 @@ namespace Feleves_feladat
 {
     public partial class ChooseWorkoutPageViewModel : ObservableObject
     {
-        public ObservableCollection<WorkoutTemplate> WorkoutTemplates { get; set; }
+        public ObservableCollection<Workout> WorkoutTemplates { get; set; }
         private readonly IDbService db;
 
         public ChooseWorkoutPageViewModel(IDbService db)
         {
             this.db = db;
-            WorkoutTemplates = new ObservableCollection<WorkoutTemplate>();
+            WorkoutTemplates = new ObservableCollection<Workout>();
             //InitalizeAsync().Wait();
             //maybe its a deadlock
         }
 
         [RelayCommand]
-        public async Task OpenWorkoutAsync(WorkoutTemplate selectedWorkout)
+        public async Task OpenWorkoutAsync(Workout selectedWorkout)
         {
             var workout = new ShellNavigationQueryParameters()
             {

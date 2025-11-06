@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 
 namespace Feleves_feladat
 {
-    [QueryProperty(nameof(WorkoutTemplate),"workoutTemplate")]
+    [QueryProperty(nameof(WorkoutTemplate), "workoutTemplate")]
     public partial class WorkoutPageViewModel : ObservableObject
     {
         [ObservableProperty]
-        private WorkoutTemplate workoutTemplate;
+        private Workout workoutTemplate;
 
         [ObservableProperty]
         private Workout performedWorkout;
+        private DateTime startTime;
 
         private readonly IDbService db;
 
@@ -29,16 +30,21 @@ namespace Feleves_feladat
         }
         public async Task InitializeExercisesFromDb()
         {
-            WorkoutTemplate.Exercises.Clear();
-            var exercises = await db.GetExercisesByWorkoutTemplateIdAsync(WorkoutTemplate.Id);
+            //WorkoutTemplate.Exercises.Clear();
+            var exercises = await db.GetExercisesByWorkoutIdAsync(WorkoutTemplate.Id);
             PerformedWorkout = new()
             {
                 Name = WorkoutTemplate.Name,
-                Color = WorkoutTemplate.Color
+                Color = WorkoutTemplate.Color,
+                IsTemplate = false,
+                Date = DateTime.Today
             };
+            await db.CreateWorkoutAsync(PerformedWorkout);
+            startTime = DateTime.Now;
             foreach (var exercise in exercises)
             {
-                WorkoutTemplate.Exercises.Add(exercise);
+                //WorkoutTemplate.Exercises.Add(exercise);
+
                 var newExercise = exercise.GetDeepCopy();
                 newExercise.WorkoutId = PerformedWorkout.Id;
 
@@ -61,9 +67,9 @@ namespace Feleves_feladat
         [RelayCommand]
         public async Task WorkoutFinishedAsync()
         {
-            await db.CreateWorkoutAsync(PerformedWorkout);
-
-            foreach(Exercise exercise in PerformedWorkout.Exercises)
+            PerformedWorkout.Length = (DateTime.Now.Hour * 60 + DateTime.Now.Minute) - (startTime.Hour * 60 + startTime.Minute);
+            await db.UpdateWorkoutAsync(PerformedWorkout);
+            foreach (Exercise exercise in PerformedWorkout.Exercises)
             {
                 await db.CreateExerciseAsync(exercise);
             }
