@@ -1,4 +1,6 @@
-﻿namespace Feleves_feladat
+﻿using Feleves_feladat.Views;
+
+namespace Feleves_feladat
 {
     public partial class App : Application
     {
@@ -9,6 +11,7 @@
             InitializeComponent();
             Routing.RegisterRoute("workout", typeof(WorkoutPage));
             Routing.RegisterRoute("chooseworkout", typeof(ChooseWorkoutPage));
+            Routing.RegisterRoute("recentworkouts", typeof(RecentWorkouts));
 
             // Fejlesztés alatt mindig töröljük az adatbázist
             if (File.Exists(DbPath))

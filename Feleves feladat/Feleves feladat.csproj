@@ -67,7 +67,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\RecentWorkouts.xaml.cs">
+	    <DependentUpon>RecentWorkouts.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Views\ChooseWorkoutPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\RecentWorkouts.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\WorkoutPage.xaml">

@@ -66,7 +66,8 @@ namespace Feleves_feladat.Services
         #region:WorkoutCRUD
         public async Task<List<Workout>> GetWorkoutsAsync()
         {
-            return await db.Table<Workout>().ToListAsync();
+            var workouts = await db.Table<Workout>().ToListAsync();
+            return workouts.FindAll(w => !w.IsTemplate);
         }
         public async Task<int> CreateWorkoutAsync(Workout workout)
         {

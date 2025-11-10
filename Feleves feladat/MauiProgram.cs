@@ -1,4 +1,6 @@
 ﻿using Feleves_feladat.Services;
+using Feleves_feladat.ViewModels;
+using Feleves_feladat.Views;
 using Microsoft.Extensions.Logging;
 
 namespace Feleves_feladat
@@ -25,10 +27,12 @@ namespace Feleves_feladat
             builder.Services.AddSingleton<MainPageViewModel>();
             builder.Services.AddTransient<ChooseWorkoutPageViewModel>();
             builder.Services.AddTransient<WorkoutPageViewModel>();
+            builder.Services.AddTransient<RecentWorkoutsViewModel>();
 
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddTransient<ChooseWorkoutPage>();
             builder.Services.AddTransient<WorkoutPage>();
+            builder.Services.AddTransient<RecentWorkouts>();
 
 
 #if DEBUG

@@ -10,18 +10,10 @@ using System.Threading.Tasks;
 
 namespace Feleves_feladat
 {
-    public partial class ChooseWorkoutPageViewModel : ObservableObject
+    public partial class ChooseWorkoutPageViewModel(IDbService db) : ObservableObject
     {
-        public ObservableCollection<Workout> WorkoutTemplates { get; set; }
-        private readonly IDbService db;
-
-        public ChooseWorkoutPageViewModel(IDbService db)
-        {
-            this.db = db;
-            WorkoutTemplates = new ObservableCollection<Workout>();
-            //InitalizeAsync().Wait();
-            //maybe its a deadlock
-        }
+        public ObservableCollection<Workout> WorkoutTemplates { get; set; } = [];
+        private readonly IDbService db = db;
 
         [RelayCommand]
         public async Task OpenWorkoutAsync(Workout selectedWorkout)

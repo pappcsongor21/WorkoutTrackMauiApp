@@ -73,6 +73,13 @@ namespace Feleves_feladat
             {
                 await db.CreateExerciseAsync(exercise);
             }
+
+            await OpenRecentWorkoutsAsync();
+        }
+
+        private async Task OpenRecentWorkoutsAsync()
+        {
+            await Shell.Current.GoToAsync("recentworkouts");
         }
     }
 }
