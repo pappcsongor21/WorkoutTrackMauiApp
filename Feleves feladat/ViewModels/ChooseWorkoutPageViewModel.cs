@@ -10,20 +10,18 @@ using System.Threading.Tasks;
 
 namespace Feleves_feladat
 {
-    public partial class ChooseWorkoutPageViewModel(IDbService db) : ObservableObject
+    public partial class ChooseWorkoutPageViewModel(IDbService db, WorkoutNavigationState navState) : ObservableObject
     {
         public ObservableCollection<Workout> WorkoutTemplates { get; set; } = [];
         private readonly IDbService db = db;
+        private readonly WorkoutNavigationState navState = navState;
 
         [RelayCommand]
-        public async Task OpenWorkoutAsync(Workout selectedWorkout)
+        public async Task OpenWorkoutAsync(Workout template)
         {
-            var workout = new ShellNavigationQueryParameters()
-            {
-                {"workoutTemplate", selectedWorkout }
-            };
+            navState.SelectedWorkoutTemplate = template;
 
-            await Shell.Current.GoToAsync("workout", workout);
+            await Shell.Current.GoToAsync("//workout");
         }
 
         public async Task InitializeAsync()

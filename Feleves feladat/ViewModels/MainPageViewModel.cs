@@ -26,7 +26,7 @@ namespace Feleves_feladat
         [RelayCommand]
         public async Task ShowWorkoutsAsync()
         {
-            await Shell.Current.GoToAsync("chooseworkout");
+            await Shell.Current.GoToAsync("//chooseworkout");
         }
     }
 }

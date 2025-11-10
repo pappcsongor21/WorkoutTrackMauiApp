@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 
 namespace Feleves_feladat
 {
-    [QueryProperty(nameof(WorkoutTemplate), "workoutTemplate")]
     public partial class WorkoutPageViewModel : ObservableObject
     {
+        private readonly IDbService db;
+        private readonly WorkoutNavigationState navState;
+
         [ObservableProperty]
         private Workout workoutTemplate;
 
@@ -19,14 +21,14 @@ namespace Feleves_feladat
         private Workout performedWorkout;
         private DateTime startTime;
 
-        private readonly IDbService db;
-
         public bool AllExercisesDone =>
             PerformedWorkout?.Exercises?.All(e => e.IsDone) == true;
 
-        public WorkoutPageViewModel(IDbService db)
+        public WorkoutPageViewModel(IDbService db, WorkoutNavigationState navState)
         {
             this.db = db;
+            this.navState = navState;
+            WorkoutTemplate = navState.SelectedWorkoutTemplate;
         }
         public async Task InitializeExercisesFromDb()
         {
@@ -79,7 +81,7 @@ namespace Feleves_feladat
 
         private async Task OpenRecentWorkoutsAsync()
         {
-            await Shell.Current.GoToAsync("recentworkouts");
+            await Shell.Current.GoToAsync("//recentworkouts");
         }
     }
 }

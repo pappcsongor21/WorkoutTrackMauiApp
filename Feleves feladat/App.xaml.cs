@@ -11,7 +11,7 @@ namespace Feleves_feladat
             InitializeComponent();
             Routing.RegisterRoute("workout", typeof(WorkoutPage));
             Routing.RegisterRoute("chooseworkout", typeof(ChooseWorkoutPage));
-            Routing.RegisterRoute("recentworkouts", typeof(RecentWorkouts));
+            Routing.RegisterRoute("recentworkouts", typeof(RecentWorkoutsPage));
 
             // Fejlesztés alatt mindig töröljük az adatbázist
             if (File.Exists(DbPath))

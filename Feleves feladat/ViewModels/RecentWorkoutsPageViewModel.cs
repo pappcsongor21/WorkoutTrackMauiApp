@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Feleves_feladat.ViewModels
 {
-    public partial class RecentWorkoutsViewModel(IDbService db) : ObservableObject
+    public partial class RecentWorkoutsPageViewModel(IDbService db) : ObservableObject
     {
         private readonly IDbService db = db;
         public ObservableCollection<Workout> Workouts { get; set; } = [];

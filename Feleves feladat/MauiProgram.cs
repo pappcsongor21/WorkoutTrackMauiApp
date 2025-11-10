@@ -1,4 +1,5 @@
-﻿using Feleves_feladat.Services;
+﻿using Feleves_feladat.Models;
+using Feleves_feladat.Services;
 using Feleves_feladat.ViewModels;
 using Feleves_feladat.Views;
 using Microsoft.Extensions.Logging;
@@ -24,15 +25,17 @@ namespace Feleves_feladat
                 return new SQLiteDbService(dbPath);
             });
 
+            builder.Services.AddSingleton<WorkoutNavigationState>();
+
             builder.Services.AddSingleton<MainPageViewModel>();
             builder.Services.AddTransient<ChooseWorkoutPageViewModel>();
             builder.Services.AddTransient<WorkoutPageViewModel>();
-            builder.Services.AddTransient<RecentWorkoutsViewModel>();
+            builder.Services.AddTransient<RecentWorkoutsPageViewModel>();
 
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddTransient<ChooseWorkoutPage>();
             builder.Services.AddTransient<WorkoutPage>();
-            builder.Services.AddTransient<RecentWorkouts>();
+            builder.Services.AddTransient<RecentWorkoutsPage>();
 
 
 #if DEBUG

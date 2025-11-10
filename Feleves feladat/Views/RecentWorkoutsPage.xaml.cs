@@ -2,10 +2,10 @@ using Feleves_feladat.ViewModels;
 
 namespace Feleves_feladat.Views;
 
-public partial class RecentWorkouts : ContentPage
+public partial class RecentWorkoutsPage : ContentPage
 {
-	private readonly RecentWorkoutsViewModel vm;
-	public RecentWorkouts(RecentWorkoutsViewModel vm)
+	private readonly RecentWorkoutsPageViewModel vm;
+	public RecentWorkoutsPage(RecentWorkoutsPageViewModel vm)
 	{
 		InitializeComponent();
 		this.vm = vm;
