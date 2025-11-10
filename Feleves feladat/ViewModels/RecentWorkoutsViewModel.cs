@@ -17,8 +17,12 @@ namespace Feleves_feladat.ViewModels
         {
             Workouts.Clear();
             var ws = await db.GetWorkoutsAsync();
-            foreach(var workout in ws)
+            foreach (var workout in ws)
+            {
+                var es = await db.GetExercisesByWorkoutIdAsync(workout.Id);
+                es.ForEach(e => workout.Exercises.Add(e));
                 Workouts.Add(workout);
+            }
         }
 
         

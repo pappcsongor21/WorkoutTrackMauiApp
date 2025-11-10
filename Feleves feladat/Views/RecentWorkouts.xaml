@@ -3,30 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Feleves_feladat.Views.RecentWorkouts"
              Title="NewPage1">
-    <VerticalStackLayout>
-        <CollectionView ItemsSource="{Binding Workouts}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <VerticalStackLayout>
-                        <Label
-                            Text="{Binding Name}"/>
-                        <CollectionView ItemsSource="{Binding Exercises}">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid ColumnDefinitions="*,*,*">
-                                        <Label 
-                                            Text="{Binding Name}"/>
-                                        <Label
-                                            Text="{Binding Intensity}"/>
-                                        <Label
-                                            Text="sets"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </VerticalStackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout>
+            <CollectionView ItemsSource="{Binding Workouts}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout>
+                            <Label
+                                Text="{Binding Name}"/>
+                            <CollectionView ItemsSource="{Binding Exercises}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid ColumnDefinitions="*,*,*">
+                                            <Label
+                                                Grid.Column="0"
+                                                Text="{Binding Name}"/>
+                                            <Label
+                                                Grid.Column="1"
+                                                Text="{Binding Intensity}"/>
+                                            <Label
+                                                Grid.Column="2"
+                                                Text="sets"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
