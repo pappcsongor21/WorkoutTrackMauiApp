@@ -32,7 +32,7 @@
             <VerticalStackLayout>
                 <CollectionView ItemsSource="{Binding WorkoutTemplates}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="local:Workout">
                             <VerticalStackLayout>
                                 <Button 
                                     Text="{Binding Name}"

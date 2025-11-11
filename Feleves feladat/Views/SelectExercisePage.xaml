@@ -4,12 +4,13 @@
              x:Class="Feleves_feladat.Views.SelectExercisePage"
              xmlns:vms="clr-namespace:Feleves_feladat.ViewModels"
              x:DataType="vms:SelectExercisePageViewModel"
+             xmlns:models="clr-namespace:Feleves_feladat.Models"
              Title="SelectExercisePage">
     <ScrollView>
         <VerticalStackLayout>
             <CollectionView ItemsSource="{Binding Exercises}">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="models:Exercise">
                         <Button 
                             Text="{Binding Name}"
                             Command="{Binding Source={RelativeSource 

@@ -38,7 +38,7 @@
 
                 <CollectionView ItemsSource="{Binding Goals}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="local:Goal">
                             <VerticalStackLayout>
                                 <Label Text="{Binding Name}"/>
                             </VerticalStackLayout>

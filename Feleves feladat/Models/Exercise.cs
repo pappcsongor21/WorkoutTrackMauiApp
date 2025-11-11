@@ -7,7 +7,7 @@ namespace Feleves_feladat.Models
 {
     public partial class Exercise : ObservableObject
     {
-        private static int nextId = 1;
+        //private static int nextId = 1;
         [PrimaryKey]
         [AutoIncrement]
         public int Id { get; set; } /*= nextId++;*/
@@ -26,7 +26,7 @@ namespace Feleves_feladat.Models
         private int? targetSets;
 
         [ObservableProperty]
-        private bool? isDone;
+        private bool isDone;
 
         [Ignore]
         public ObservableCollection<PerformedSet> PerformedSets { get; set; }
@@ -48,10 +48,10 @@ namespace Feleves_feladat.Models
         {
             return JsonSerializer.Deserialize<Exercise>(JsonSerializer.Serialize(this));
         }
-        partial void OnTargetSetsChanged(int value)
-        {
-            GeneratePerformedReps();
-        }
+        //partial void OnTargetSetsChanged(int value)
+        //{
+        //    GeneratePerformedReps();
+        //}
 
         private void GeneratePerformedReps()
         {

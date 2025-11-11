@@ -3,19 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Feleves_feladat.Views.RecentWorkoutsPage"
              xmlns:vms="clr-namespace:Feleves_feladat.ViewModels"
+             xmlns:models="clr-namespace:Feleves_feladat.Models"
+             xmlns:local="clr-namespace:Feleves_feladat"
              x:DataType="vms:RecentWorkoutsPageViewModel"
              Title="RecentWorkouts">
     <ScrollView>
         <VerticalStackLayout>
             <CollectionView ItemsSource="{Binding Workouts}">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="local:Workout">
                         <VerticalStackLayout>
                             <Label
                                 Text="{Binding Name}"/>
                             <CollectionView ItemsSource="{Binding Exercises}">
                                 <CollectionView.ItemTemplate>
-                                    <DataTemplate>
+                                    <DataTemplate x:DataType="models:Exercise" >
                                         <Grid ColumnDefinitions="*,*,*">
                                             <Label
                                                 Grid.Column="0"
