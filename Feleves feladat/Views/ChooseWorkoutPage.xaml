@@ -34,18 +34,29 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="local:Workout">
                             <VerticalStackLayout>
-                                <Button 
-                                    Text="{Binding Name}"
-                                    Command="{Binding Source={RelativeSource AncestorType=
-                                    {x:Type local:ChooseWorkoutPageViewModel}}, 
-                                    Path=OpenWorkoutCommand}"
-                                    CommandParameter="{Binding .}"
-                                    FontSize="24"
-                                    FontAttributes="Bold"
-                                    HeightRequest="150"
-                                    CornerRadius="0"
-                                    Margin="0,5,0,0"
-                                    Background="{Binding Color, Converter={StaticResource WorkoutColorConv}}"/>
+                                <SwipeView>
+                                    <SwipeView.RightItems>
+                                        <SwipeItem
+                                            IconImageSource="pen_solid_full.svg"
+                                            BackgroundColor="Yellow"
+                                            Command="{Binding Source={RelativeSource AncestorType=
+                                            {x:Type local:ChooseWorkoutPageViewModel}},
+                                            Path=GoToEditWorkoutCommand}"
+                                            CommandParameter="{Binding .}"/>
+                                    </SwipeView.RightItems>
+                                    <Button 
+                                        Text="{Binding Name}"
+                                        Command="{Binding Source={RelativeSource AncestorType=
+                                        {x:Type local:ChooseWorkoutPageViewModel}}, 
+                                        Path=OpenWorkoutCommand}"
+                                        CommandParameter="{Binding .}"
+                                        FontSize="24"
+                                        FontAttributes="Bold"
+                                        HeightRequest="150"
+                                        CornerRadius="0"
+                                        Margin="0,5,0,0"
+                                        Background="{Binding Color, Converter={StaticResource WorkoutColorConv}}"/>
+                                </SwipeView>
                             </VerticalStackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

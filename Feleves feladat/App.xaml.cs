@@ -14,6 +14,7 @@ namespace Feleves_feladat
             //Routing.RegisterRoute("recentworkouts", typeof(RecentWorkoutsPage));
             Routing.RegisterRoute("selectexercise", typeof(SelectExercisePage));
             Routing.RegisterRoute("workoutcreator", typeof(WorkoutCreatorPage));
+            Routing.RegisterRoute("editworkouttemplate", typeof(EditWorkoutTemplatePage));
 
 
             // Fejlesztés alatt mindig töröljük az adatbázist

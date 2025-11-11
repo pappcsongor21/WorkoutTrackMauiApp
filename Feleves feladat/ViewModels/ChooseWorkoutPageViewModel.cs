@@ -25,10 +25,21 @@ namespace Feleves_feladat
 
             await Shell.Current.GoToAsync("//workout");
         }
+
         [RelayCommand]
         public async Task OpenWorkoutCreatorAsync()
         {
             await Shell.Current.GoToAsync("workoutcreator");
+        }
+
+        [RelayCommand]
+        public async Task GoToEditWorkoutAsync(Workout workout)
+        {
+            var param = new ShellNavigationQueryParameters
+            {
+                {"editedWorkout", workout }
+            };
+            await Shell.Current.GoToAsync("editworkouttemplate", param);
         }
         public async Task InitializeAsync()
         {

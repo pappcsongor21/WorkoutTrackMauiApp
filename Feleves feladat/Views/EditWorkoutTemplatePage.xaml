@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Feleves_feladat.Views.EditWorkoutTemplatePage"
+             Title="EditWorkoutTemplatePage"
+             xmlns:vms="clr-namespace:Feleves_feladat.ViewModels"
+             xmlns:models="clr-namespace:Feleves_feladat.Models"
+             x:DataType="vms:EditWorkoutTemplatePageViewModel">
+
+    <ScrollView>
+        <CollectionView ItemsSource="{Binding EditedWorkout.Exercises}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Exercise">
+                    <Label Text="{Binding Name}"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ScrollView>
+</ContentPage>

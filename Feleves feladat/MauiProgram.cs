@@ -33,6 +33,7 @@ namespace Feleves_feladat
             builder.Services.AddTransient<RecentWorkoutsPageViewModel>();
             builder.Services.AddTransient<WorkoutCreatorPageViewModel>();
             builder.Services.AddTransient<SelectExercisePageViewModel>();
+            builder.Services.AddTransient<EditWorkoutTemplatePageViewModel>();
 
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddTransient<ChooseWorkoutPage>();
@@ -40,6 +41,7 @@ namespace Feleves_feladat
             builder.Services.AddTransient<RecentWorkoutsPage>();
             builder.Services.AddTransient<WorkoutCreatorPage>();
             builder.Services.AddTransient<SelectExercisePage>();
+            builder.Services.AddTransient<EditWorkoutTemplatePage>();
 
 
 #if DEBUG
