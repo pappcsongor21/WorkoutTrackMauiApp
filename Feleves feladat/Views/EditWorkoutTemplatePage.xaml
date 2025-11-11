@@ -8,12 +8,52 @@
              x:DataType="vms:EditWorkoutTemplatePageViewModel">
 
     <ScrollView>
-        <CollectionView ItemsSource="{Binding EditedWorkout.Exercises}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Exercise">
-                    <Label Text="{Binding Name}"/>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <VerticalStackLayout>
+            <CollectionView 
+                ItemsSource="{Binding Exercises}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Exercise">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <Label 
+                                Text="{Binding Name}"
+                                Grid.Column="0"
+                                HeightRequest="80"
+                                HorizontalOptions="Center"
+                                VerticalTextAlignment="Center"/>
+                            <Button
+                                Command="{Binding Source={RelativeSource AncestorType=
+                                {x:Type vms:EditWorkoutTemplatePageViewModel}},
+                                Path=DeleteExerciseCommand}"
+                                CommandParameter="{Binding .}"
+                                ImageSource="trash_solid_full.png"
+                                Grid.Column="1"
+                                WidthRequest="80"
+                                BackgroundColor="Red"
+                                />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button
+                Text="Add exercise"
+                Command="{Binding GoToSelectExerciseCommand}"
+                TextColor="Black"
+                BackgroundColor="{StaticResource PrimaryColor}"
+                FontSize="24"
+                FontAttributes="Bold"
+                HeightRequest="150"
+                CornerRadius="0"
+                Margin="0,5,0,0"/>
+            <Button
+                Text="Save workout"
+                Command="{Binding SaveWorkoutCommand}"
+                TextColor="Black"
+                BackgroundColor="{StaticResource PrimaryColor}"
+                FontSize="24"
+                FontAttributes="Bold"
+                HeightRequest="150"
+                CornerRadius="0"
+                Margin="0,5,0,0"/>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

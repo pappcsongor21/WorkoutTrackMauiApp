@@ -5,6 +5,7 @@ namespace Feleves_feladat.Services
 {
     public class WorkoutBuilderService
     {
-        public ObservableCollection<Exercise> CurrentExercises { get; set; } = new();
+        public ObservableCollection<Exercise> CurrentExercises { get; set; } = [];
+        public bool IsFirstOpenForEdit { get; set; } = true;
     }
 }

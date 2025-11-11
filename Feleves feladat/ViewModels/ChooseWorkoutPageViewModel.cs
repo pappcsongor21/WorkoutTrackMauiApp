@@ -37,7 +37,7 @@ namespace Feleves_feladat
         {
             var param = new ShellNavigationQueryParameters
             {
-                {"editedWorkout", workout }
+                {"editedWorkoutTemplate", workout }
             };
             await Shell.Current.GoToAsync("editworkouttemplate", param);
         }

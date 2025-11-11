@@ -7,17 +7,17 @@ using System.Collections.ObjectModel;
 namespace Feleves_feladat.ViewModels
 {
     public partial class SelectExercisePageViewModel
-        (IDbService db, WorkoutBuilderService workoutCreatorService) : ObservableObject
+        (IDbService db, WorkoutBuilderService workoutBuilderService) : ObservableObject
     {
         private readonly IDbService db = db;
-        private readonly WorkoutBuilderService workoutCreatorService = workoutCreatorService;
+        private readonly WorkoutBuilderService workoutBuilderService = workoutBuilderService;
 
         public ObservableCollection<Exercise> Exercises { get; set; } = [];
 
         [RelayCommand]
         public async Task SelectExerciseAsync(Exercise selected)
         {
-            workoutCreatorService.CurrentExercises.Add(selected);
+            workoutBuilderService.CurrentExercises.Add(selected);
             await Shell.Current.GoToAsync("..");
         }
         public async Task Init()
