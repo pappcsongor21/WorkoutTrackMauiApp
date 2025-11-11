@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Feleves_feladat.Views.WorkoutCreatorPage"
+             xmlns:vms="clr-namespace:Feleves_feladat.ViewModels"
+             x:DataType="vms:WorkoutCreatorPageViewModel"
              Title="WorkoutCreatorPage">
     <ScrollView>
         <VerticalStackLayout>

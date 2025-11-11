@@ -31,6 +31,8 @@ namespace Feleves_feladat.ViewModels
                 await db.CreateExerciseAsync(newExercise);
                 newWorkout.Exercises.Add(newExercise);
             }
+
+            workoutBuilderService.CurrentExercises.Clear();
             await Shell.Current.GoToAsync("..");
         }
 

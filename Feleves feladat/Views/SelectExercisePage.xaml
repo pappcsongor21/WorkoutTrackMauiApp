@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Feleves_feladat.Views.SelectExercisePage"
              xmlns:vms="clr-namespace:Feleves_feladat.ViewModels"
+             x:DataType="vms:SelectExercisePageViewModel"
              Title="SelectExercisePage">
     <ScrollView>
         <VerticalStackLayout>

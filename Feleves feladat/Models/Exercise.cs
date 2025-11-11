@@ -14,19 +14,19 @@ namespace Feleves_feladat.Models
         public int WorkoutId { get; set; } //Foreign key
 
         [ObservableProperty]
-        private string name;
+        private string? name;
 
         [ObservableProperty]
-        private string intensity;
+        private string? intensity;
 
         [ObservableProperty]
-        private string targetReps;
+        private string? targetReps;
 
         [ObservableProperty]
-        private int targetSets;
+        private int? targetSets;
 
         [ObservableProperty]
-        private bool isDone;
+        private bool? isDone;
 
         [Ignore]
         public ObservableCollection<PerformedSet> PerformedSets { get; set; }

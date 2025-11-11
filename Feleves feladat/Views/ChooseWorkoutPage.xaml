@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Feleves_feladat"
              x:Class="Feleves_feladat.ChooseWorkoutPage"
+             x:DataType="local:ChooseWorkoutPageViewModel"
              Title="ChooseWorkoutPage">
     <ContentPage.Resources>
         <local:WorkoutColorConverter x:Key="WorkoutColorConv"/>
