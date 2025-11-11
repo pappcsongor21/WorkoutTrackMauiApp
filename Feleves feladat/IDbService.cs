@@ -1,9 +1,4 @@
 ﻿using Feleves_feladat.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Feleves_feladat
 {
@@ -23,7 +18,7 @@ namespace Feleves_feladat
         Task<List<Exercise>> GetExercisesByWorkoutIdAsync(int workoutId);
         Task<int> CreateExerciseAsync(Exercise exercise);
         Task<int> UpdateExerciseAsync(Exercise exercise);
-        Task<int> DeleteExerciseAsync(Exercise exercise); 
+        Task<int> DeleteExerciseAsync(Exercise exercise);
 
         Task<List<PerformedSet>> GetPerformedSetsAsync();
         Task<List<PerformedSet>> GetPerformedSetsByExerciseIdAsync(int exerciseId);

@@ -1,11 +1,6 @@
 ﻿using Feleves_feladat.Models;
 using SQLite;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Feleves_feladat.Services
 {
@@ -29,7 +24,7 @@ namespace Feleves_feladat.Services
 
         public async void GenerateSeedData()
         {
-            Workout upperBodyCali = new() { Name = "Upper body cali", Color = "Purple", IsTemplate = true};
+            Workout upperBodyCali = new() { Name = "Upper body cali", Color = "Purple", IsTemplate = true };
             await CreateWorkoutTemplateAsync(upperBodyCali);
 
             await CreateExerciseAsync(new Exercise() { Name = "banded pullup", Intensity = "35kg band", TargetReps = "5-8", TargetSets = 3, WorkoutId = upperBodyCali.Id });
@@ -46,7 +41,7 @@ namespace Feleves_feladat.Services
         #region:WorkoutTemplateCRUD
         public async Task<List<Workout>> GetWorkoutTemplatesAsync()
         {
-            var workouts =  await db.Table<Workout>().ToListAsync();
+            var workouts = await db.Table<Workout>().ToListAsync();
             return workouts.FindAll(w => w.IsTemplate);
         }
         public async Task<int> CreateWorkoutTemplateAsync(Workout workout)

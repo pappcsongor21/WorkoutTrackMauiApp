@@ -1,12 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using SQLite;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Feleves_feladat.Models
 {
@@ -16,7 +11,7 @@ namespace Feleves_feladat.Models
         [PrimaryKey]
         [AutoIncrement]
         public int Id { get; set; } /*= nextId++;*/
-        public int WorkoutId {  get; set; } //Foreign key
+        public int WorkoutId { get; set; } //Foreign key
 
         [ObservableProperty]
         private string name;

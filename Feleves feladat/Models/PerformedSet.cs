@@ -7,9 +7,9 @@ namespace Feleves_feladat.Models
     {
         [PrimaryKey]
         [AutoIncrement]
-        public int Id {  get; set; }
+        public int Id { get; set; }
 
-        public int ExerciseId {  get; set; } //Foreign key
+        public int ExerciseId { get; set; } //Foreign key
         [ObservableProperty]
         private int setNumber;
 
