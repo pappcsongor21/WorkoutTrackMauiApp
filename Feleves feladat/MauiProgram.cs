@@ -25,7 +25,7 @@ namespace Feleves_feladat
             });
 
             builder.Services.AddSingleton<WorkoutNavigationState>();
-            builder.Services.AddSingleton<WorkoutCreatorService>();
+            builder.Services.AddSingleton<WorkoutBuilderService>();
 
             builder.Services.AddSingleton<MainPageViewModel>();
             builder.Services.AddTransient<ChooseWorkoutPageViewModel>();

@@ -7,10 +7,10 @@ using System.Collections.ObjectModel;
 namespace Feleves_feladat.ViewModels
 {
     public partial class SelectExercisePageViewModel
-        (IDbService db, WorkoutCreatorService workoutCreatorService) : ObservableObject
+        (IDbService db, WorkoutBuilderService workoutCreatorService) : ObservableObject
     {
         private readonly IDbService db = db;
-        private readonly WorkoutCreatorService workoutCreatorService = workoutCreatorService;
+        private readonly WorkoutBuilderService workoutCreatorService = workoutCreatorService;
 
         public ObservableCollection<Exercise> Exercises { get; set; } = [];
 

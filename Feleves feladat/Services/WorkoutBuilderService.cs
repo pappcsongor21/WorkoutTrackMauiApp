@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace Feleves_feladat.Services
 {
-    public class WorkoutCreatorService
+    public class WorkoutBuilderService
     {
         public ObservableCollection<Exercise> CurrentExercises { get; set; } = new();
     }

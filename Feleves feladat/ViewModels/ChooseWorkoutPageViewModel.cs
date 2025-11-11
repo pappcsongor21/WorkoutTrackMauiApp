@@ -5,11 +5,18 @@ using System.Collections.ObjectModel;
 
 namespace Feleves_feladat
 {
-    public partial class ChooseWorkoutPageViewModel(IDbService db, WorkoutNavigationState navState) : ObservableObject
+    public partial class ChooseWorkoutPageViewModel
+        : ObservableObject
     {
-        public ObservableCollection<Workout> WorkoutTemplates { get; set; } = [];
-        private readonly IDbService db = db;
-        private readonly WorkoutNavigationState navState = navState;
+        private readonly IDbService db;
+        private readonly WorkoutNavigationState navState;
+
+        public ObservableCollection<Workout> WorkoutTemplates { get; private set; } = [];
+        public ChooseWorkoutPageViewModel(IDbService db, WorkoutNavigationState navState)
+        {
+            this.db = db;
+            this.navState = navState;
+        }
 
         [RelayCommand]
         public async Task OpenWorkoutAsync(Workout template)
@@ -21,7 +28,7 @@ namespace Feleves_feladat
         [RelayCommand]
         public async Task OpenWorkoutCreatorAsync()
         {
-            await Shell.Current.GoToAsync("//workoutcreator");
+            await Shell.Current.GoToAsync("workoutcreator");
         }
         public async Task InitializeAsync()
         {
