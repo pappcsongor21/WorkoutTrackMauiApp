@@ -31,4 +31,8 @@
         Title="Workout"
         ContentTemplate="{DataTemplate local:WorkoutPage}"
         Route="workout"/>
+    <ShellContent
+        Title="WorkoutCreator"
+        ContentTemplate="{DataTemplate views:WorkoutCreatorPage}"
+        Route="workoutcreator"/>
 </Shell>

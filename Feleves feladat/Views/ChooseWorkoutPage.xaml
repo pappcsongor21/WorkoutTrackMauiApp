@@ -56,14 +56,15 @@
                     StrokeThickness="3">-->
                 <BoxView HeightRequest="3"/>
                 <Button
-                        Text="New workout"
-                        TextColor="Black"
-                        BackgroundColor="{StaticResource PrimaryColor}"
-                        FontSize="24"
-                        FontAttributes="Bold"
-                        HeightRequest="150"
-                        CornerRadius="0"
-                        Margin="0,5,0,0"/>
+                    Text="New workout"
+                    Command="{Binding OpenWorkoutCreatorCommand}"
+                    TextColor="Black"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    FontSize="24"
+                    FontAttributes="Bold"
+                    HeightRequest="150"
+                    CornerRadius="0"
+                    Margin="0,5,0,0"/>
                 <BoxView HeightRequest="3"/>
                 <!--</Border>-->
                 
