@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Feleves_feladat.Models
+namespace Feleves_feladat.Services
 {
     public class WorkoutNavigationState
     {

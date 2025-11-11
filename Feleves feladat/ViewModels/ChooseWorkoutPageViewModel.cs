@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Feleves_feladat.Models;
+using Feleves_feladat.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

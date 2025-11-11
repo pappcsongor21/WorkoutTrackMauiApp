@@ -9,9 +9,11 @@ namespace Feleves_feladat
         public App()
         {
             InitializeComponent();
-            Routing.RegisterRoute("workout", typeof(WorkoutPage));
-            Routing.RegisterRoute("chooseworkout", typeof(ChooseWorkoutPage));
-            Routing.RegisterRoute("recentworkouts", typeof(RecentWorkoutsPage));
+            //Routing.RegisterRoute("workout", typeof(WorkoutPage));
+            //Routing.RegisterRoute("chooseworkout", typeof(ChooseWorkoutPage));
+            //Routing.RegisterRoute("recentworkouts", typeof(RecentWorkoutsPage));
+            Routing.RegisterRoute("selectexercise", typeof(SelectExercisePage));
+
 
             // Fejlesztés alatt mindig töröljük az adatbázist
             if (File.Exists(DbPath))

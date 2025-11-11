@@ -24,6 +24,7 @@
             </CollectionView>
             <Button
                 Text="Add exercise"
+                Command="{Binding GoToSelectExerciseCommand}"
                 TextColor="Black"
                 BackgroundColor="{StaticResource PrimaryColor}"
                 FontSize="24"

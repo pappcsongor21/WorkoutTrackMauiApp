@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Feleves_feladat.Views.SelectExercisePage"
+             xmlns:vms="clr-namespace:Feleves_feladat.ViewModels"
+             Title="SelectExercisePage">
+    <ScrollView>
+        <VerticalStackLayout>
+            <CollectionView ItemsSource="{Binding Exercises}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Button 
+                            Text="{Binding Name}"
+                            Command="{Binding Source={RelativeSource 
+                            AncestorType={x:Type vms:SelectExercisePageViewModel}},
+                            Path=SelectExerciseCommand}"
+                            CommandParameter="{Binding .}"
+                            Margin="5,5,5,0"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
