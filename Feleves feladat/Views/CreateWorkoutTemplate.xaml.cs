@@ -4,7 +4,7 @@ namespace Feleves_feladat.Views;
 
 public partial class WorkoutCreatorPage : ContentPage
 {
-    public WorkoutCreatorPage(WorkoutCreatorPageViewModel vm)
+    public WorkoutCreatorPage(CreateWorkoutTemplateViewModel vm)
     {
         InitializeComponent();
         BindingContext = vm;

@@ -31,7 +31,7 @@ namespace Feleves_feladat
             builder.Services.AddTransient<ChooseWorkoutPageViewModel>();
             builder.Services.AddTransient<WorkoutPageViewModel>();
             builder.Services.AddTransient<RecentWorkoutsPageViewModel>();
-            builder.Services.AddTransient<WorkoutCreatorPageViewModel>();
+            builder.Services.AddTransient<CreateWorkoutTemplateViewModel>();
             builder.Services.AddTransient<SelectExercisePageViewModel>();
             builder.Services.AddTransient<EditWorkoutTemplatePageViewModel>();
 

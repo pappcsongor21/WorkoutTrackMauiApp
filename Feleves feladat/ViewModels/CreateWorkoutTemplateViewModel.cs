@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace Feleves_feladat.ViewModels
 {
-    public partial class WorkoutCreatorPageViewModel
+    public partial class CreateWorkoutTemplateViewModel
         (WorkoutBuilderService workoutBuilderService, IDbService db)
         : ObservableObject
     {
