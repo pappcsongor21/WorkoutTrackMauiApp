@@ -5,7 +5,7 @@
              xmlns:vms="clr-namespace:Feleves_feladat.ViewModels"
              xmlns:models="clr-namespace:Feleves_feladat.Models"
              xmlns:local="clr-namespace:Feleves_feladat"
-             x:DataType="vms:WorkoutCreatorPageViewModel"
+             x:DataType="vms:CreateWorkoutTemplateViewModel"
              Title="WorkoutCreatorPage">
     <ContentPage.Resources>
         <local:WorkoutColorConverter x:Key="WorkoutColorConv"/>
