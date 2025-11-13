@@ -16,12 +16,19 @@ namespace Feleves_feladat.ViewModels
         [ObservableProperty]
         private string name = "New workout";
 
+        [ObservableProperty]
+        private string color = "red";
+
+        public ObservableCollection<string> Colors { get; } = new()
+        {
+            "Red", "Green", "Blue", "Orange", "Purple", "Yellow"
+        };
         public ObservableCollection<Exercise> Exercises => workoutBuilderService.CurrentExercises;
 
         [RelayCommand]
         public async Task SaveWorkoutAsync()
         {
-            Workout newWorkout = new() { Name = Name, Color = "Red", IsTemplate = true};
+            Workout newWorkout = new() { Name = Name, Color = Color, IsTemplate = true};
             await db.CreateWorkoutTemplateAsync(newWorkout);
 
             foreach (Exercise e in Exercises)

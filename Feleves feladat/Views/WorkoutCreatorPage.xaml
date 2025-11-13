@@ -4,10 +4,26 @@
              x:Class="Feleves_feladat.Views.WorkoutCreatorPage"
              xmlns:vms="clr-namespace:Feleves_feladat.ViewModels"
              xmlns:models="clr-namespace:Feleves_feladat.Models"
+             xmlns:local="clr-namespace:Feleves_feladat"
              x:DataType="vms:WorkoutCreatorPageViewModel"
              Title="WorkoutCreatorPage">
+    <ContentPage.Resources>
+        <local:WorkoutColorConverter x:Key="WorkoutColorConv"/>
+    </ContentPage.Resources>
+    
     <ScrollView>
         <VerticalStackLayout>
+            <Grid ColumnDefinitions="*,Auto">
+                <Entry
+                    Text="{Binding Name}"
+                    Grid.Column="0"
+                    BackgroundColor="{Binding Color, 
+                    Converter={StaticResource WorkoutColorConv}}"/>
+                <Picker
+                    Grid.Column="1"
+                    ItemsSource="{Binding Colors}"
+                    SelectedItem="{Binding Color, Mode=TwoWay}" />
+            </Grid>
             <CollectionView ItemsSource="{Binding Exercises}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Exercise">
