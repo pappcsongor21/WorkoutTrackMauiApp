@@ -64,7 +64,7 @@
                                         Grid.RowSpan="2"
                                         ItemsSource="{Binding PerformedSets}">
                                         <CollectionView.ItemTemplate>
-                                            <DataTemplate>
+                                            <DataTemplate x:DataType="models:PerformedSet">
                                                 <HorizontalStackLayout>
                                                     <Entry Text="{Binding RepCount}" 
                                                            Placeholder="{Binding RepCount}"
@@ -76,8 +76,8 @@
                                                            TextColor="Black"
                                                            BackgroundColor="{StaticResource SecondaryColor}"/>
                                                     <!--<Picker></Picker>-->
-                                                    <Entry Text="{Binding repsInReserve}"
-                                                           Placeholder="{Binding repsInReserve}"
+                                                    <Entry Text="{Binding RepsInReserve}"
+                                                           Placeholder="{Binding RepsInReserve}"
                                                            HeightRequest="30"
                                                            WidthRequest="40"
                                                            Keyboard="Numeric"
