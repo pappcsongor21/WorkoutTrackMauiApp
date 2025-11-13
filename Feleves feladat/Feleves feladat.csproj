@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net9.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
@@ -70,7 +70,7 @@
 	  <Compile Update="Views\EditWorkoutTemplatePage.xaml.cs">
 	    <DependentUpon>EditWorkoutTemplatePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\WorkoutCreatorPage.xaml.cs">
+	  <Compile Update="Views\CreateWorkoutTemplate.xaml.cs">
 	    <DependentUpon>WorkoutCreatorPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\RecentWorkoutsPage.xaml.cs">
@@ -91,7 +91,7 @@
 	  <MauiXaml Update="Views\SelectExercisePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\WorkoutCreatorPage.xaml">
+	  <MauiXaml Update="Views\CreateWorkoutTemplate.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\RecentWorkoutsPage.xaml">
