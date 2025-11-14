@@ -29,5 +29,11 @@ namespace Feleves_feladat
 
         [ObservableProperty]
         private DateTime? date;
+
+        [ObservableProperty]
+        private string imageUrl;
+
+        [ObservableProperty]
+        private bool hasImage;
     }
 }

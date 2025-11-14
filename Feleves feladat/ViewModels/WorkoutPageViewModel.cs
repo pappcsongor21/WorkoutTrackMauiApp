@@ -12,11 +12,12 @@ namespace Feleves_feladat
 
         [ObservableProperty]
         private Workout workoutTemplate;
-
         [ObservableProperty]
         private Workout performedWorkout;
+
         private DateTime startTime;
 
+        public bool DoesntHaveImageYet => PerformedWorkout is null || !PerformedWorkout.HasImage;
         public bool AllExercisesDone =>
             PerformedWorkout?.Exercises?.All(e => e.IsDone) == true;
 
@@ -25,6 +26,44 @@ namespace Feleves_feladat
             this.db = db;
             this.navState = navState;
             WorkoutTemplate = navState.SelectedWorkoutTemplate;
+        }
+        
+        [RelayCommand]
+        public void ExerciseIsDone(Exercise exercise)
+        {
+            exercise.IsDone = true;
+        }
+        [RelayCommand]
+        public async Task TakePictureAsync()
+        {
+            if (!MediaPicker.Default.IsCaptureSupported) return;
+
+            FileResult? image = await MediaPicker.Default.CapturePhotoAsync();
+            if(image != null)
+            {
+                string localURL = Path.Combine(FileSystem.Current.AppDataDirectory, image.FileName);
+                if (!File.Exists(localURL))
+                {
+                    using Stream stream = await image.OpenReadAsync();
+                    using FileStream fs = File.OpenWrite(localURL);
+                    await stream.CopyToAsync(fs);
+                }
+                PerformedWorkout.ImageUrl = localURL;
+                PerformedWorkout.HasImage = true;
+                OnPropertyChanged(nameof(DoesntHaveImageYet));
+            }
+        }
+        [RelayCommand]
+        public async Task WorkoutFinishedAsync()
+        {
+            PerformedWorkout.Length = (DateTime.Now.Hour * 60 + DateTime.Now.Minute) - (startTime.Hour * 60 + startTime.Minute);
+            await db.UpdateWorkoutAsync(PerformedWorkout);
+            foreach (Exercise exercise in PerformedWorkout.Exercises)
+            {
+                await db.CreateExerciseAsync(exercise);
+            }
+
+            await OpenRecentWorkoutsAsync();
         }
         public async Task InitializeExercisesFromDb()
         {
@@ -53,26 +92,6 @@ namespace Feleves_feladat
                 PerformedWorkout.Exercises.Add(newExercise);
             }
         }
-
-        [RelayCommand]
-        public void ExerciseIsDone(Exercise exercise)
-        {
-            exercise.IsDone = true;
-        }
-
-        [RelayCommand]
-        public async Task WorkoutFinishedAsync()
-        {
-            PerformedWorkout.Length = (DateTime.Now.Hour * 60 + DateTime.Now.Minute) - (startTime.Hour * 60 + startTime.Minute);
-            await db.UpdateWorkoutAsync(PerformedWorkout);
-            foreach (Exercise exercise in PerformedWorkout.Exercises)
-            {
-                await db.CreateExerciseAsync(exercise);
-            }
-
-            await OpenRecentWorkoutsAsync();
-        }
-
         private async Task OpenRecentWorkoutsAsync()
         {
             await Shell.Current.GoToAsync("//recentworkouts");
