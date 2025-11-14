@@ -41,6 +41,12 @@ namespace Feleves_feladat
             };
             await Shell.Current.GoToAsync("editworkouttemplate", param);
         }
+        [RelayCommand]
+        public async Task DeleteWorkoutTemplateAsync(Workout workout)
+        {
+            WorkoutTemplates.Remove(workout);
+            await db.DeleteWorkoutTemplateAsync(workout);
+        }
         public async Task InitializeAsync()
         {
             WorkoutTemplates.Clear();

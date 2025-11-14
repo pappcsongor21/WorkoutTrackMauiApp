@@ -37,12 +37,19 @@
                                 <SwipeView>
                                     <SwipeView.RightItems>
                                         <SwipeItem
-                                            IconImageSource="pen_solid_full.svg"
-                                            BackgroundColor="Yellow"
                                             Command="{Binding Source={RelativeSource AncestorType=
                                             {x:Type local:ChooseWorkoutPageViewModel}},
                                             Path=GoToEditWorkoutCommand}"
-                                            CommandParameter="{Binding .}"/>
+                                            CommandParameter="{Binding .}"
+                                            IconImageSource="pen_solid_full.png"
+                                            BackgroundColor="Yellow"/>
+                                        <SwipeItem
+                                            Command="{Binding Source={RelativeSource AncestorType=
+                                            {x:Type local:ChooseWorkoutPageViewModel}},
+                                            Path=DeleteWorkoutTemplateCommand}"
+                                            CommandParameter="{Binding .}"
+                                            IconImageSource="trash_solid_full.png"
+                                            BackgroundColor="Red"/>
                                     </SwipeView.RightItems>
                                     <Button 
                                         Text="{Binding Name}"
