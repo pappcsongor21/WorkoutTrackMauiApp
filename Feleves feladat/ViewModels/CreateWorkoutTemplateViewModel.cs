@@ -48,5 +48,10 @@ namespace Feleves_feladat.ViewModels
         {
             await Shell.Current.GoToAsync("selectexercise");
         }
+        [RelayCommand]
+        public void DeleteExercise(Exercise exercise)
+        {
+            workoutBuilderService.CurrentExercises.Remove(exercise);
+        }
     }
 }

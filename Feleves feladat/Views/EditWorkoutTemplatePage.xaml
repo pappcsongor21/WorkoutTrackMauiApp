@@ -9,8 +9,18 @@
 
     <ScrollView>
         <VerticalStackLayout>
-            <CollectionView 
-                ItemsSource="{Binding Exercises}">
+            <Grid ColumnDefinitions="*,Auto">
+                <Entry
+                    Text="{Binding EditedWorkoutTemplate.Name}"
+                    Grid.Column="0"
+                    BackgroundColor="{Binding EditedWorkoutTemplate.Color, 
+                    Converter={StaticResource WorkoutColorConv}}"/>
+                <Picker
+                    Grid.Column="1"
+                    ItemsSource="{Binding Colors}"
+                    SelectedItem="{Binding EditedWorkoutTemplate.Color, Mode=TwoWay}" />
+            </Grid>
+            <CollectionView ItemsSource="{Binding Exercises}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Exercise">
                         <Grid ColumnDefinitions="*, Auto">

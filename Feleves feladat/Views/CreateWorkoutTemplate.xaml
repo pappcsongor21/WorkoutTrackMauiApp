@@ -27,16 +27,22 @@
             <CollectionView ItemsSource="{Binding Exercises}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Exercise">
-                        <Grid ColumnDefinitions="*,*,*">
-                            <Label
+                        <Grid ColumnDefinitions="*, Auto">
+                            <Label 
+                                Text="{Binding Name}"
                                 Grid.Column="0"
-                                Text="{Binding Name}"/>
-                            <Label
+                                HeightRequest="80"
+                                HorizontalOptions="Center"
+                                VerticalTextAlignment="Center"/>
+                            <Button
+                                Command="{Binding Source={RelativeSource AncestorType=
+                                {x:Type vms:CreateWorkoutTemplateViewModel}},
+                                Path=DeleteExerciseCommand}"
+                                CommandParameter="{Binding .}"
+                                ImageSource="trash_solid_full.png"
                                 Grid.Column="1"
-                                Text="{Binding Intensity}"/>
-                            <Label
-                                Grid.Column="2"
-                                Text="sets"/>
+                                WidthRequest="80"
+                                BackgroundColor="Red"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

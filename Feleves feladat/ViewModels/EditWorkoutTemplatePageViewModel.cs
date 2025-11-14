@@ -21,7 +21,10 @@ namespace Feleves_feladat.ViewModels
         
         [ObservableProperty]
         private Workout editedWorkoutTemplate;
-
+        public ObservableCollection<string> Colors { get; } =
+        [
+            "Red", "Green", "Blue", "Orange", "Purple", "Yellow"
+        ];
         public ObservableCollection<Exercise> Exercises => workoutBuilderService.CurrentExercises;
 
         [RelayCommand]
@@ -45,6 +48,7 @@ namespace Feleves_feladat.ViewModels
             }
             workoutBuilderService.CurrentExercises.Clear();
             workoutBuilderService.IsFirstOpenForEdit = true;
+            await db.UpdateWorkoutTemplateAsync(editedWorkoutTemplate);
             await Shell.Current.GoToAsync("..");
         }
 
