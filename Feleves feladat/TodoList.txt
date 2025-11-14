@@ -1,6 +1,7 @@
 
-
+- ne lehessen olyan exercise-t választani, amit már megcsináltak
 - megkezdett edzést lehessen cancelelni
+- ne lehessen 0 gyakorlatos edzést csinálni
 - recentWorkoutsPage-et szebbét tenni
 - WorkoutPage-et minél felhasználó barátabbá tenni
 - exercise létrehozás stb.

@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
 
 namespace Feleves_feladat.ViewModels
@@ -18,7 +20,18 @@ namespace Feleves_feladat.ViewModels
                 Workouts.Add(workout);
             }
         }
-
+        [RelayCommand]
+        public async Task ShareWorkoutAsync(Workout workout)
+        {
+            if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
+            {
+                await Share.Default.RequestAsync(new ShareTextRequest()
+                {
+                    Title = "Share ToDo",
+                    Text = workout.ToString()
+                });
+            }
+        }
 
     }
 }

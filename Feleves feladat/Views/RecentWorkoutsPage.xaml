@@ -8,31 +8,73 @@
              x:DataType="vms:RecentWorkoutsPageViewModel"
              Title="RecentWorkouts">
     <ScrollView>
-        <VerticalStackLayout>
+        <VerticalStackLayout
+            BackgroundColor="{StaticResource PrimaryColor}">
             <CollectionView ItemsSource="{Binding Workouts}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="local:Workout">
-                        <VerticalStackLayout>
-                            <Label
-                                Text="{Binding Name}"/>
-                            <CollectionView ItemsSource="{Binding Exercises}">
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate x:DataType="models:Exercise" >
-                                        <Grid ColumnDefinitions="*,*,*">
-                                            <Label
-                                                Grid.Column="0"
-                                                Text="{Binding Name}"/>
-                                            <Label
-                                                Grid.Column="1"
-                                                Text="{Binding Intensity}"/>
-                                            <Label
-                                                Grid.Column="2"
-                                                Text="sets"/>
-                                        </Grid>
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
-                        </VerticalStackLayout>
+                        <Border
+                            StrokeThickness="1"
+                            Stroke="Black"> 
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="{StaticResource ThirdColor}" Offset="0.0" />
+                                    <GradientStop Color="{StaticResource FourthColor}" Offset="1.0" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <VerticalStackLayout>
+                                <Label
+                                    Text="{Binding Name}"
+                                    HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"
+                                    HeightRequest="35"
+                                    BackgroundColor="{Binding Color}"/>
+                                <CollectionView ItemsSource="{Binding Exercises}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="models:Exercise" >
+                                            <Grid 
+                                                ColumnDefinitions="*,*,*"
+                                                Padding="5,1,5,1">
+                                                <Label
+                                                    Grid.Column="0"
+                                                    Text="{Binding Name}"/>
+                                                <Label
+                                                    Grid.Column="1"
+                                                    Text="{Binding Intensity}"
+                                                    HorizontalTextAlignment="Center"/>
+                                                <Label
+                                                    Grid.Column="2"
+                                                    Text="sets"
+                                                    HorizontalTextAlignment="Center"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                                <Grid
+                                    ColumnDefinitions="*,*"
+                                    Padding="10">
+                                    <Image 
+                                        Source="{Binding ImageUrl}"
+                                        IsVisible="{Binding HasImage}"
+                                        Grid.Column="0"
+                                        WidthRequest="200"
+                                        HorizontalOptions="Center"
+                                        />
+                                    <Button 
+                                        Grid.Column="1"
+                                        Command="{Binding Source={RelativeSource AncestorType=
+                                        {x:Type vms:RecentWorkoutsPageViewModel}},
+                                        Path=ShareWorkoutCommand}"
+                                        CommandParameter="{Binding .}"
+                                        BackgroundColor="{StaticResource SecondaryColor}"
+                                        ImageSource="share_nodes_solid_full.png"
+                                        WidthRequest="200"
+                                        HeightRequest="50"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="End"/>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
