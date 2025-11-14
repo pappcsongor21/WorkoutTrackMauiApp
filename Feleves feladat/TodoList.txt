@@ -1,0 +1,6 @@
+
+
+- megkezdett edzést lehessen cancelelni
+- recentWorkoutsPage-et szebbét tenni
+- WorkoutPage-et minél felhasználó barátabbá tenni
+- exercise létrehozás stb.
