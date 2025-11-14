@@ -28,8 +28,6 @@ namespace Feleves_feladat
         }
         public async Task InitializeExercisesFromDb()
         {
-            //WorkoutTemplate.Exercises.Clear();
-            var exercises = await db.GetExercisesByWorkoutIdAsync(WorkoutTemplate.Id);
             PerformedWorkout = new()
             {
                 Name = WorkoutTemplate.Name,
@@ -39,10 +37,10 @@ namespace Feleves_feladat
             };
             await db.CreateWorkoutAsync(PerformedWorkout);
             startTime = DateTime.Now;
+
+            var exercises = await db.GetExercisesByWorkoutIdAsync(WorkoutTemplate.Id);
             foreach (var exercise in exercises)
             {
-                //WorkoutTemplate.Exercises.Add(exercise);
-
                 var newExercise = exercise.GetDeepCopy();
                 newExercise.WorkoutId = PerformedWorkout.Id;
 

@@ -14,16 +14,16 @@ namespace Feleves_feladat.Models
         public int WorkoutId { get; set; } //Foreign key
 
         [ObservableProperty]
-        private string? name;
+        private string name;
 
         [ObservableProperty]
-        private string? intensity;
+        private string intensity;
 
         [ObservableProperty]
-        private string? targetReps;
+        private string targetReps;
 
         [ObservableProperty]
-        private int? targetSets;
+        private int targetSets;
 
         [ObservableProperty]
         private bool isDone;
@@ -48,10 +48,11 @@ namespace Feleves_feladat.Models
         {
             return JsonSerializer.Deserialize<Exercise>(JsonSerializer.Serialize(this));
         }
-        //partial void OnTargetSetsChanged(int value)
-        //{
-        //    GeneratePerformedReps();
-        //}
+
+        partial void OnTargetSetsChanged(int value)
+        {
+            GeneratePerformedReps();
+        }
 
         private void GeneratePerformedReps()
         {
