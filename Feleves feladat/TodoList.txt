@@ -4,5 +4,6 @@
 - ne lehessen 0 gyakorlatos edzést csinálni
 - recentWorkoutsPage-et szebbét tenni
 - WorkoutPage-et minél felhasználó barátabbá tenni
+- WorkoutBuilderService kibekkelése, asszem meg lehetne oldani több QueryPropertyvel
 - exercise létrehozás stb.
 - <a target="_blank" href="https://icons8.com/icon/u6fgr8ZE6pPA/note">Note</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>

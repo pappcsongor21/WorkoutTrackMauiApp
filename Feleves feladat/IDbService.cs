@@ -14,6 +14,9 @@ namespace Feleves_feladat
         Task<int> UpdateWorkoutAsync(Workout workout);
         Task<int> DeleteWorkoutAsync(Workout workout);
 
+        Task<List<Exercise>> GetExerciseTemplatesAsync();
+        Task<List<Exercise>> GetExerciseTemplatesByWorkoutIdAsync(int workoutId);
+
         Task<List<Exercise>> GetExercisesAsync();
         Task<List<Exercise>> GetExercisesByWorkoutIdAsync(int workoutId);
         Task<int> CreateExerciseAsync(Exercise exercise);

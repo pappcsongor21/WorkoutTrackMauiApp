@@ -28,6 +28,9 @@ namespace Feleves_feladat.Models
         [ObservableProperty]
         private bool isDone;
 
+        [ObservableProperty]
+        private bool isTemplate;
+
         [Ignore]
         public ObservableCollection<PerformedSet> PerformedSets { get; set; }
 

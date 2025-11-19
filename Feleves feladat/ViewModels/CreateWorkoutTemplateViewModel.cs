@@ -35,6 +35,7 @@ namespace Feleves_feladat.ViewModels
             {
                 var newExercise = e.GetDeepCopy();
                 newExercise.WorkoutId = newWorkout.Id;
+                newExercise.IsTemplate = false;
                 await db.CreateExerciseAsync(newExercise);
                 newWorkout.Exercises.Add(newExercise);
             }

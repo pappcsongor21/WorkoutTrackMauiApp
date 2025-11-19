@@ -8,7 +8,7 @@ namespace Feleves_feladat.Services
     {
         private readonly SQLiteAsyncConnection db;
 
-        SQLiteOpenFlags Flags = SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create;
+        readonly SQLiteOpenFlags Flags = SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create;
 
         public SQLiteDbService(string dbPath)
         {
@@ -16,7 +16,6 @@ namespace Feleves_feladat.Services
             db.CreateTableAsync<Workout>().Wait();
             db.CreateTableAsync<Exercise>().Wait();
             db.CreateTableAsync<PerformedSet>().Wait();
-            db.CreateTableAsync<ExerciseTemplate>().Wait();
 
             GenerateSeedData();
             Debug.WriteLine($" SQLite database path: {dbPath}");
@@ -27,11 +26,11 @@ namespace Feleves_feladat.Services
             Workout upperBodyCali = new() { Name = "Upper body cali", Color = "Purple", IsTemplate = true };
             await CreateWorkoutTemplateAsync(upperBodyCali);
 
-            await CreateExerciseAsync(new Exercise() { Name = "banded pullup", Intensity = "35kg band", TargetReps = "5-8", TargetSets = 3, WorkoutId = upperBodyCali.Id });
-            await CreateExerciseAsync(new Exercise() { Name = "ring dip hold", Intensity = "slightly assisted", TargetReps = "15s", TargetSets = 3, WorkoutId = upperBodyCali.Id });
-            await CreateExerciseAsync(new Exercise() { Name = "inverted row", Intensity = "-1 step", TargetReps = "8-12", TargetSets = 3, WorkoutId = upperBodyCali.Id });
-            await CreateExerciseAsync(new Exercise() { Name = "pushup", Intensity = "", TargetReps = "8-12", TargetSets = 3, WorkoutId = upperBodyCali.Id });
-            await CreateExerciseAsync(new Exercise() { Name = "pike leg raise", Intensity = "fingertips at knee", TargetReps = "5-8", TargetSets = 3, WorkoutId = upperBodyCali.Id });
+            await CreateExerciseAsync(new Exercise() { Name = "banded pullup", Intensity = "35kg band", TargetReps = "5-8", TargetSets = 3, WorkoutId = upperBodyCali.Id, IsTemplate = true });
+            await CreateExerciseAsync(new Exercise() { Name = "ring dip hold", Intensity = "slightly assisted", TargetReps = "15s", TargetSets = 3, WorkoutId = upperBodyCali.Id, IsTemplate = true });
+            await CreateExerciseAsync(new Exercise() { Name = "inverted row", Intensity = "-1 step", TargetReps = "8-12", TargetSets = 3, WorkoutId = upperBodyCali.Id, IsTemplate = true });
+            await CreateExerciseAsync(new Exercise() { Name = "pushup", Intensity = "", TargetReps = "8-12", TargetSets = 3, WorkoutId = upperBodyCali.Id, IsTemplate = true });
+            await CreateExerciseAsync(new Exercise() { Name = "pike leg raise", Intensity = "fingertips at knee", TargetReps = "5-8", TargetSets = 3, WorkoutId = upperBodyCali.Id, IsTemplate = true });
 
             Workout workout1 = new() { Name = "Lower body", Color = "Green", IsTemplate = true };
             await CreateWorkoutTemplateAsync(workout1);
@@ -75,6 +74,18 @@ namespace Feleves_feladat.Services
         public async Task<int> DeleteWorkoutAsync(Workout workout)
         {
             return await db.DeleteAsync(workout);
+        }
+        #endregion
+
+        #region:ExerciseTemplateCRUD
+        public async Task<List<Exercise>> GetExerciseTemplatesAsync()
+        {
+            var exercises = await db.Table<Exercise>().ToListAsync();
+            return exercises.FindAll(w => w.IsTemplate);
+        }
+        public async Task<List<Exercise>> GetExerciseTemplatesByWorkoutIdAsync(int workoutId)
+        {
+            return await db.Table<Exercise>().Where( e => e.WorkoutId == workoutId && e.IsTemplate).ToListAsync();
         }
         #endregion
 

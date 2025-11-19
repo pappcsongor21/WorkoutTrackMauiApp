@@ -23,7 +23,7 @@ namespace Feleves_feladat.ViewModels
         public async Task Init()
         {
             Exercises.Clear();
-            var es = await db.GetExercisesAsync();
+            var es = await db.GetExerciseTemplatesAsync();
             foreach (var exercise in es)
             {
                 Exercises.Add(exercise);

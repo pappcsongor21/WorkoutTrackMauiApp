@@ -82,7 +82,7 @@ namespace Feleves_feladat
             {
                 var newExercise = exercise.GetDeepCopy();
                 newExercise.WorkoutId = PerformedWorkout.Id;
-
+                newExercise.IsTemplate = false;
                 newExercise.PropertyChanged += (_, e) =>
                 {
                     if (e.PropertyName == nameof(Exercise.IsDone))
