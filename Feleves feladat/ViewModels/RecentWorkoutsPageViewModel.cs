@@ -31,6 +31,11 @@ namespace Feleves_feladat.ViewModels
                     Text = workout.ToString()
                 });
             }
+            else
+            {
+                WeakReferenceMessenger.Default.Send(new ErrorMessage()
+                { Title = "Connectivity Error", Text = "No internet access." });
+            }
         }
 
     }

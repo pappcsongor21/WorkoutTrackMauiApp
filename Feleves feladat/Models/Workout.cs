@@ -35,5 +35,16 @@ namespace Feleves_feladat
 
         [ObservableProperty]
         private bool hasImage;
+
+        public override string ToString()
+        {
+            string text = "Today's workout:\n\n";
+            text += Name + "\n";
+            foreach(Exercise e in Exercises)
+            {
+                text += e.Name + "\n";
+            }
+            return text;
+        }
     }
 }
