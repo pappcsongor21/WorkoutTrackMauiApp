@@ -34,6 +34,14 @@ namespace Feleves_feladat
             exercise.IsDone = true;
         }
         [RelayCommand]
+        public async Task WorkoutCanceled()
+        {
+            await db.DeleteWorkoutAsync(PerformedWorkout);
+            navState.SelectedWorkoutTemplate = null;
+
+            await Shell.Current.GoToAsync("//chooseworkout");
+        }
+        [RelayCommand]
         public async Task TakePictureAsync()
         {
             if (!MediaPicker.Default.IsCaptureSupported) return;

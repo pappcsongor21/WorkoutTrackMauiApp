@@ -118,6 +118,13 @@
                         IsVisible="{Binding DoesntHaveImageYet}"
                         BackgroundColor="{StaticResource FourthColor}"
                         />
+                    <Button
+                        Text="Cancel"
+                        HeightRequest="70"
+                        Margin="0,5,0,5"
+                        Command="{Binding WorkoutCanceledCommand}"
+                        BackgroundColor="{StaticResource FourthColor}"
+                        />
                     <Image
                         Source="{Binding PerformedWorkout.ImageUrl}"
                         WidthRequest="200"

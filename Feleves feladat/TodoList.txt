@@ -1,8 +1,7 @@
 
-- ne lehessen olyan exercise-t választani, amit már megcsináltak
-- megkezdett edzést lehessen cancelelni
+- recentworkoutsPage-en jelenjenek meg a konkrét sorozatok is edzésenként
+- a share-t valszeg jobban meg kéne csinálni
 - ne lehessen 0 gyakorlatos edzést csinálni
-- recentWorkoutsPage-et szebbét tenni
 - WorkoutPage-et minél felhasználó barátabbá tenni
 - WorkoutBuilderService kibekkelése, asszem meg lehetne oldani több QueryPropertyvel
 - exercise létrehozás stb.

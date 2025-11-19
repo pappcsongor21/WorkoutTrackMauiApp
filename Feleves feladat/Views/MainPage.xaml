@@ -9,19 +9,15 @@
         <Grid 
             ColumnDefinitions="Auto, *, Auto"
             BackgroundColor="{StaticResource ThirdColor}">
-            <Button Text="*"
-                    FontSize="40"
-                    BackgroundColor="{StaticResource ThirdColor}"
-                    />
             <Label 
                 Grid.Column="1" 
                 Text="Day x of this cycle" 
+                HeightRequest="40"
                 FontSize="24"
                 TextColor="White"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
                 />
-            <Button BackgroundColor="{StaticResource ThirdColor}" Grid.Column="2" Text="O" FontSize="40"/>
         </Grid>
         
         <ScrollView Grid.Row="1">
