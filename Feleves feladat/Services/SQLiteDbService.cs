@@ -16,8 +16,8 @@ namespace Feleves_feladat.Services
             db.CreateTableAsync<Workout>().Wait();
             db.CreateTableAsync<Exercise>().Wait();
             db.CreateTableAsync<PerformedSet>().Wait();
-
-            GenerateSeedData();
+            if(db.Table<Workout>().CountAsync().Result == 0)
+                GenerateSeedData();
             Debug.WriteLine($" SQLite database path: {dbPath}");
         }
 

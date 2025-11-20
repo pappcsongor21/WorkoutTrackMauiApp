@@ -16,10 +16,10 @@ namespace Feleves_feladat
             Routing.RegisterRoute("workoutcreator", typeof(WorkoutCreatorPage));
             Routing.RegisterRoute("editworkouttemplate", typeof(EditWorkoutTemplatePage));
 
-
-            // Fejlesztés alatt mindig töröljük az adatbázist
-            if (File.Exists(DbPath))
-                File.Delete(DbPath);
+            //#if DEBUG
+            //if (File.Exists(DbPath))
+            //    File.Delete(DbPath);
+            //#endif
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
