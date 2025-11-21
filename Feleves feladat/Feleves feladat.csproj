@@ -20,6 +20,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
+		<!-- Anti trimming-->
+		<PublishTrimmed>false</PublishTrimmed>
+		<RunAOTCompilation>false</RunAOTCompilation>
+		
 		<!-- Display name -->
 		<ApplicationTitle>Feleves feladat</ApplicationTitle>
 

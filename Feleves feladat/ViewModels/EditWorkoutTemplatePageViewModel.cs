@@ -12,15 +12,24 @@ using System.Xml.Linq;
 
 namespace Feleves_feladat.ViewModels
 {
-    [QueryProperty(nameof(EditedWorkoutTemplate), "editedWorkoutTemplate")]
-    public partial class EditWorkoutTemplatePageViewModel(IDbService db,
-        WorkoutBuilderService workoutBuilderService) : ObservableObject
+    [QueryProperty(nameof(EditedWorkoutTemplateId), "editedWorkoutTemplateId")]
+    public partial class EditWorkoutTemplatePageViewModel : ObservableObject
     {
-        private readonly IDbService db = db;
-        private readonly WorkoutBuilderService workoutBuilderService = workoutBuilderService;
-        
+        private readonly IDbService db;
+        private readonly WorkoutBuilderService workoutBuilderService;
+        private readonly WorkoutNavigationState navState;
+
+        public EditWorkoutTemplatePageViewModel(IDbService db,
+            WorkoutBuilderService workoutBuilderService)
+        {
+            this.db = db;
+            this.workoutBuilderService = workoutBuilderService;
+        }
+
         [ObservableProperty]
         private Workout editedWorkoutTemplate;
+        [ObservableProperty]
+        private int editedWorkoutTemplateId;
         public ObservableCollection<string> Colors { get; } =
         [
             "Red", "Green", "Blue", "Orange", "Purple", "Yellow"
@@ -58,8 +67,16 @@ namespace Feleves_feladat.ViewModels
         {
             await Shell.Current.GoToAsync("selectexercise");
         }
-        public async Task LoadExercisesFromDbAsync()
+        public async Task InitializeAsync()
         {
+            EditedWorkoutTemplate = await db.GetWorkoutTemplateByIdAsync(EditedWorkoutTemplateId);
+            LoadExercisesFromDbAsync();
+        }
+        private async Task LoadExercisesFromDbAsync()
+        {
+            if (EditedWorkoutTemplate is null)
+                return;
+
             var exercises = await db.GetExercisesByWorkoutIdAsync(EditedWorkoutTemplate.Id);
             foreach (var exercise in exercises)
             {

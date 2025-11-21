@@ -15,6 +15,6 @@ public partial class EditWorkoutTemplatePage : ContentPage
 	protected async override void OnAppearing()
 	{
 		base.OnAppearing();
-		await vm.LoadExercisesFromDbAsync();
+		await vm.InitializeAsync();
 	}
 }

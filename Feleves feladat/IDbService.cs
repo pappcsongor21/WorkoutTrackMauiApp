@@ -5,6 +5,7 @@ namespace Feleves_feladat
     public interface IDbService
     {
         Task<List<Workout>> GetWorkoutTemplatesAsync();
+        Task<Workout?> GetWorkoutTemplateByIdAsync(int id);
         Task<int> CreateWorkoutTemplateAsync(Workout workout);
         Task<int> UpdateWorkoutTemplateAsync(Workout workout);
         Task<int> DeleteWorkoutTemplateAsync(Workout workout);

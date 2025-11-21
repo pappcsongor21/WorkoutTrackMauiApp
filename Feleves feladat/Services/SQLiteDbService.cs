@@ -43,6 +43,11 @@ namespace Feleves_feladat.Services
             var workouts = await db.Table<Workout>().ToListAsync();
             return workouts.FindAll(w => w.IsTemplate);
         }
+        public async Task<Workout?> GetWorkoutTemplateByIdAsync(int id)
+        {
+            var workouts = await db.Table<Workout>().ToListAsync();
+            return workouts.FirstOrDefault(w => w.Id == id && w.IsTemplate);
+        }
         public async Task<int> CreateWorkoutTemplateAsync(Workout workout)
         {
             return await db.InsertAsync(workout);

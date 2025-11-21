@@ -1,4 +1,5 @@
-
+- appshell.xaml
+- QueryProperty-k használata a ViewModel-ekben(workoutBuilderService, workoutNavigationService helyett)
 - recentworkoutsPage-en jelenjenek meg a konkrét sorozatok is edzésenként
 - ne lehessen 0 gyakorlatos edzést csinálni
 - WorkoutPage-et minél felhasználó barátabbá tenni
