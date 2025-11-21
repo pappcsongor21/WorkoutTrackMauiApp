@@ -20,7 +20,7 @@
                     ItemsSource="{Binding Colors}"
                     SelectedItem="{Binding EditedWorkoutTemplate.Color, Mode=TwoWay}" />
             </Grid>
-            <CollectionView ItemsSource="{Binding Exercises}">
+            <CollectionView ItemsSource="{Binding EditedWorkoutTemplate.Exercises}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Exercise">
                         <Grid ColumnDefinitions="*, Auto">

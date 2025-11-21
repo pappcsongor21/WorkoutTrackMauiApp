@@ -12,9 +12,9 @@ public partial class EditWorkoutTemplatePage : ContentPage
 		BindingContext = vm;
 	}
 
-	protected async override void OnAppearing()
+	protected override async void OnNavigatedTo(NavigatedToEventArgs args)
 	{
-		base.OnAppearing();
-		await vm.InitializeAsync();
-	}
+		base.OnNavigatedTo(args);
+		await vm.InitializeExercisesAsync();
+    }
 }

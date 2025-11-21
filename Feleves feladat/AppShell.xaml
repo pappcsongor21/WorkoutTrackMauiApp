@@ -27,16 +27,4 @@
         Route="recentworkouts"/>
         </Tab>
     </TabBar>
-    <ShellContent
-        Title="Workout"
-        ContentTemplate="{DataTemplate local:WorkoutPage}"
-        Route="workout"/>
-    <ShellContent
-        Title="WorkoutCreator"
-        ContentTemplate="{DataTemplate views:WorkoutCreatorPage}"
-        Route="workoutcreator"/>
-    <ShellContent
-        Title="SelectExercise"
-        ContentTemplate="{DataTemplate views:SelectExercisePage}"
-        Route="selectexercise"/>
 </Shell>

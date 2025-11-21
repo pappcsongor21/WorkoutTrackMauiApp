@@ -24,8 +24,6 @@ namespace Feleves_feladat
                 return new SQLiteDbService(dbPath);
             });
 
-            builder.Services.AddSingleton<WorkoutNavigationState>();
-            builder.Services.AddSingleton<WorkoutBuilderService>();
 
             builder.Services.AddSingleton<MainPageViewModel>();
             builder.Services.AddTransient<ChooseWorkoutPageViewModel>();

@@ -10,7 +10,7 @@ namespace Feleves_feladat
         public App()
         {
             InitializeComponent();
-            //Routing.RegisterRoute("workout", typeof(WorkoutPage));
+            Routing.RegisterRoute("workout", typeof(WorkoutPage));
             //Routing.RegisterRoute("chooseworkout", typeof(ChooseWorkoutPage));
             //Routing.RegisterRoute("recentworkouts", typeof(RecentWorkoutsPage));
             Routing.RegisterRoute("selectexercise", typeof(SelectExercisePage));

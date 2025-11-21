@@ -5,13 +5,14 @@ using Feleves_feladat.Services;
 
 namespace Feleves_feladat
 {
+    [QueryProperty(nameof(WorkoutTemplateId), "workoutTemplateId")]
     public partial class WorkoutPageViewModel : ObservableObject
     {
         private readonly IDbService db;
-        private readonly WorkoutNavigationState navState;
-
         [ObservableProperty]
         private Workout workoutTemplate;
+        [ObservableProperty]
+        private int workoutTemplateId;
         [ObservableProperty]
         private Workout performedWorkout;
 
@@ -21,11 +22,9 @@ namespace Feleves_feladat
         public bool AllExercisesDone =>
             PerformedWorkout?.Exercises?.All(e => e.IsDone) == true;
 
-        public WorkoutPageViewModel(IDbService db, WorkoutNavigationState navState)
+        public WorkoutPageViewModel(IDbService db)
         {
             this.db = db;
-            this.navState = navState;
-            WorkoutTemplate = navState.SelectedWorkoutTemplate;
         }
         
         [RelayCommand]
@@ -37,7 +36,6 @@ namespace Feleves_feladat
         public async Task WorkoutCanceled()
         {
             await db.DeleteWorkoutAsync(PerformedWorkout);
-            navState.SelectedWorkoutTemplate = null;
 
             await Shell.Current.GoToAsync("//chooseworkout");
         }
@@ -71,9 +69,15 @@ namespace Feleves_feladat
                 await db.CreateExerciseAsync(exercise);
             }
 
-            await OpenRecentWorkoutsAsync();
+            await Shell.Current.GoToAsync("//chooseworkout");
+            await Shell.Current.GoToAsync("//recentworkouts");
         }
-        public async Task InitializeExercisesFromDb()
+        public async Task Initialize()
+        {
+            WorkoutTemplate = await db.GetWorkoutTemplateByIdAsync(WorkoutTemplateId);
+            await InitializeExercisesFromDb();
+        }
+        private async Task InitializeExercisesFromDb()
         {
             PerformedWorkout = new()
             {
@@ -100,9 +104,9 @@ namespace Feleves_feladat
                 PerformedWorkout.Exercises.Add(newExercise);
             }
         }
-        private async Task OpenRecentWorkoutsAsync()
-        {
-            await Shell.Current.GoToAsync("//recentworkouts");
-        }
+        //private async Task OpenRecentWorkoutsAsync()
+        //{
+        //    await Shell.Current.GoToAsync("//recentworkouts");
+        //}
     }
 }

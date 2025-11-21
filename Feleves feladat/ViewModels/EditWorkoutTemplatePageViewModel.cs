@@ -13,78 +13,62 @@ using System.Xml.Linq;
 namespace Feleves_feladat.ViewModels
 {
     [QueryProperty(nameof(EditedWorkoutTemplateId), "editedWorkoutTemplateId")]
-    public partial class EditWorkoutTemplatePageViewModel : ObservableObject
+    public partial class EditWorkoutTemplatePageViewModel(IDbService db) : ObservableObject
     {
-        private readonly IDbService db;
-        private readonly WorkoutBuilderService workoutBuilderService;
-        private readonly WorkoutNavigationState navState;
+        private readonly IDbService db = db;
 
-        public EditWorkoutTemplatePageViewModel(IDbService db,
-            WorkoutBuilderService workoutBuilderService)
+        public int EditedWorkoutTemplateId
         {
-            this.db = db;
-            this.workoutBuilderService = workoutBuilderService;
+            set
+            {
+                _ = LoadEditedWorkoutTemplateAsync(value);
+            }
+        }
+
+        private async Task LoadEditedWorkoutTemplateAsync(int value)
+        {
+            EditedWorkoutTemplate = await db.GetWorkoutTemplateByIdAsync(value);
         }
 
         [ObservableProperty]
         private Workout editedWorkoutTemplate;
-        [ObservableProperty]
-        private int editedWorkoutTemplateId;
+
         public ObservableCollection<string> Colors { get; } =
         [
             "Red", "Green", "Blue", "Orange", "Purple", "Yellow"
         ];
-        public ObservableCollection<Exercise> Exercises => workoutBuilderService.CurrentExercises;
 
         [RelayCommand]
         public async Task DeleteExerciseAsync(Exercise exercise)
         {
             await db.DeleteExerciseAsync(exercise);
-            workoutBuilderService.CurrentExercises.Remove(exercise);
+            EditedWorkoutTemplate.Exercises.Remove(exercise);
         }
 
         [RelayCommand]
         public async Task SaveWorkoutAsync()
         {
-            foreach (Exercise e in Exercises)
-            {
-                if (!editedWorkoutTemplate.Exercises.Contains(e))
-                {
-                    var newExercise = e.GetDeepCopy();
-                    newExercise.WorkoutId = editedWorkoutTemplate.Id;
-                    newExercise.IsTemplate = false;
-                    await db.CreateExerciseAsync(newExercise);
-                }
-            }
-            workoutBuilderService.CurrentExercises.Clear();
-            workoutBuilderService.IsFirstOpenForEdit = true;
-            await db.UpdateWorkoutTemplateAsync(editedWorkoutTemplate);
+            await db.UpdateWorkoutTemplateAsync(EditedWorkoutTemplate);
             await Shell.Current.GoToAsync("..");
         }
 
         [RelayCommand]
         public async Task GoToSelectExerciseAsync()
         {
-            await Shell.Current.GoToAsync("selectexercise");
-        }
-        public async Task InitializeAsync()
-        {
-            EditedWorkoutTemplate = await db.GetWorkoutTemplateByIdAsync(EditedWorkoutTemplateId);
-            LoadExercisesFromDbAsync();
-        }
-        private async Task LoadExercisesFromDbAsync()
-        {
-            if (EditedWorkoutTemplate is null)
-                return;
-
-            var exercises = await db.GetExercisesByWorkoutIdAsync(EditedWorkoutTemplate.Id);
-            foreach (var exercise in exercises)
+            var currentWorkoutParams = new ShellNavigationQueryParameters
             {
-                EditedWorkoutTemplate.Exercises.Add(exercise);
-                if(workoutBuilderService.IsFirstOpenForEdit)
-                    workoutBuilderService.CurrentExercises.Add(exercise);
-            }
-            workoutBuilderService.IsFirstOpenForEdit = false;
+                { "workoutTemplateId", EditedWorkoutTemplate.Id }
+            };
+            await Shell.Current.GoToAsync("selectexercise", currentWorkoutParams);
         }
+        public async Task InitializeExercisesAsync()
+        {
+            //if (EditedWorkoutTemplate == null) return;
+
+            EditedWorkoutTemplate.Exercises = new ObservableCollection<Exercise>
+                (await db.GetExercisesByWorkoutIdAsync(EditedWorkoutTemplate.Id));
+
+        }
+
     }
 }

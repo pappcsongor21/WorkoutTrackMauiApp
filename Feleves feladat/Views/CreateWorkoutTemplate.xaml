@@ -15,16 +15,16 @@
         <VerticalStackLayout>
             <Grid ColumnDefinitions="*,Auto">
                 <Entry
-                    Text="{Binding Name}"
+                    Text="{Binding NewWorkout.Name}"
                     Grid.Column="0"
-                    BackgroundColor="{Binding Color, 
+                    BackgroundColor="{Binding NewWorkout.Color, 
                     Converter={StaticResource WorkoutColorConv}}"/>
                 <Picker
                     Grid.Column="1"
                     ItemsSource="{Binding Colors}"
-                    SelectedItem="{Binding Color, Mode=TwoWay}" />
+                    SelectedItem="{Binding NewWorkout.Color, Mode=TwoWay}" />
             </Grid>
-            <CollectionView ItemsSource="{Binding Exercises}">
+            <CollectionView ItemsSource="{Binding NewWorkout.Exercises}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Exercise">
                         <Grid ColumnDefinitions="*, Auto">

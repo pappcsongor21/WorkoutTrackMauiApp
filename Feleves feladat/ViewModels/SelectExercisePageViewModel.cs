@@ -6,18 +6,21 @@ using System.Collections.ObjectModel;
 
 namespace Feleves_feladat.ViewModels
 {
+    [QueryProperty(nameof(WorkoutTemplateId), "workoutTemplateId")]
     public partial class SelectExercisePageViewModel
-        (IDbService db, WorkoutBuilderService workoutBuilderService) : ObservableObject
+        (IDbService db) : ObservableObject
     {
         private readonly IDbService db = db;
-        private readonly WorkoutBuilderService workoutBuilderService = workoutBuilderService;
-
+        public int WorkoutTemplateId { get; set; }
         public ObservableCollection<Exercise> Exercises { get; set; } = [];
 
         [RelayCommand]
         public async Task SelectExerciseAsync(Exercise selected)
         {
-            workoutBuilderService.CurrentExercises.Add(selected);
+            var newExercise = selected.GetDeepCopy();
+            newExercise.WorkoutId = WorkoutTemplateId;
+            newExercise.IsTemplate = false;
+            await db.CreateExerciseAsync(newExercise);
             await Shell.Current.GoToAsync("..");
         }
         public async Task Init()

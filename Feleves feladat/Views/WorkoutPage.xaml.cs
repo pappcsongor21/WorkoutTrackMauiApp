@@ -12,7 +12,7 @@ public partial class WorkoutPage : ContentPage
     protected async override void OnAppearing()
     {
         base.OnAppearing();
-        await vm.InitializeExercisesFromDb();
+        await vm.Initialize();
     }
 
 

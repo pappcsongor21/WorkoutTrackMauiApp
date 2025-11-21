@@ -9,21 +9,22 @@ namespace Feleves_feladat
         : ObservableObject
     {
         private readonly IDbService db;
-        private readonly WorkoutNavigationState navState;
 
         public ObservableCollection<Workout> WorkoutTemplates { get; private set; } = [];
-        public ChooseWorkoutPageViewModel(IDbService db, WorkoutNavigationState navState)
+        public ChooseWorkoutPageViewModel(IDbService db)
         {
             this.db = db;
-            this.navState = navState;
         }
 
         [RelayCommand]
         public async Task OpenWorkoutAsync(Workout template)
         {
-            navState.SelectedWorkoutTemplate = template;
+            var param = new ShellNavigationQueryParameters
+            {
+                {"workoutTemplateId", template.Id }
+            };
 
-            await Shell.Current.GoToAsync("//workout");
+            await Shell.Current.GoToAsync("workout", param);
         }
 
         [RelayCommand]

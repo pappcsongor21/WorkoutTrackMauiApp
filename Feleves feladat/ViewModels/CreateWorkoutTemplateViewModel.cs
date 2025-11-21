@@ -6,53 +6,51 @@ using System.Collections.ObjectModel;
 
 namespace Feleves_feladat.ViewModels
 {
-    public partial class CreateWorkoutTemplateViewModel
-        (WorkoutBuilderService workoutBuilderService, IDbService db)
-        : ObservableObject
+    public partial class CreateWorkoutTemplateViewModel : ObservableObject
     {
-        private readonly WorkoutBuilderService workoutBuilderService = workoutBuilderService;
-        private readonly IDbService db = db;
+        IDbService db;
+        public CreateWorkoutTemplateViewModel(IDbService db)
+        {
+            this.db = db;
+            NewWorkout ??= new Workout() { Name = "New workout", Color = "red", IsTemplate = true };
+            _ = db.CreateWorkoutTemplateAsync(newWorkout);
+        }
 
         [ObservableProperty]
-        private string name = "New workout";
-
-        [ObservableProperty]
-        private string color = "red";
+        private Workout newWorkout;
 
         public ObservableCollection<string> Colors { get; } = new()
         {
             "Red", "Green", "Blue", "Orange", "Purple", "Yellow"
         };
-        public ObservableCollection<Exercise> Exercises => workoutBuilderService.CurrentExercises;
+
 
         [RelayCommand]
         public async Task SaveWorkoutAsync()
         {
-            Workout newWorkout = new() { Name = Name, Color = Color, IsTemplate = true};
-            await db.CreateWorkoutTemplateAsync(newWorkout);
-
-            foreach (Exercise e in Exercises)
-            {
-                var newExercise = e.GetDeepCopy();
-                newExercise.WorkoutId = newWorkout.Id;
-                newExercise.IsTemplate = false;
-                await db.CreateExerciseAsync(newExercise);
-                newWorkout.Exercises.Add(newExercise);
-            }
-
-            workoutBuilderService.CurrentExercises.Clear();
+            await db.UpdateWorkoutTemplateAsync(NewWorkout);
             await Shell.Current.GoToAsync("..");
         }
 
         [RelayCommand]
         public async Task GoToSelectExerciseAsync()
         {
-            await Shell.Current.GoToAsync("selectexercise");
+            var param = new ShellNavigationQueryParameters
+            {
+                {"workoutTemplateId", NewWorkout.Id }
+            };
+            await Shell.Current.GoToAsync("selectexercise", param);
         }
         [RelayCommand]
-        public void DeleteExercise(Exercise exercise)
+        public async Task DeleteExercise(Exercise exercise)
         {
-            workoutBuilderService.CurrentExercises.Remove(exercise);
+            await db.DeleteExerciseAsync(exercise);
+            NewWorkout.Exercises.Remove(exercise);
+        }
+        public async void Initialize()
+        {
+            NewWorkout.Exercises = new ObservableCollection<Exercise>
+                (await db.GetExercisesByWorkoutIdAsync(NewWorkout.Id));
         }
     }
 }
